@@ -1,5 +1,5 @@
 {
-  "name": "@ionic-cs/portals-rn-web",
+  "name": "@my-app/web",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

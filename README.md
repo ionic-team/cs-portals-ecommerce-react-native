@@ -22,7 +22,7 @@ Before you build the iOS or Android source you will need to build the web resour
 
 ```bash
 yarn install
-yarn workspace @ionic-cs/portals-rn-web build
+yarn workspace @my-app/web build
 ```
 
 ### Serving
@@ -31,5 +31,5 @@ To serve the web application, run the following commands:
 
 ```bash
 yarn install
-yarn workspace @ionic-cs/portals-rn-web start
+yarn workspace @my-app/web start
 ```

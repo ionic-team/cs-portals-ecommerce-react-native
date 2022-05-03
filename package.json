@@ -1,5 +1,6 @@
 {
-  "name": "@ionic-cs/portals-rn",
+  "name": "portals-ecommerce",
+  "description": "An e-commerce demo application using Ionic Portals for React Native.",
   "version": "0.0.1",
   "private": true,
   "workspaces": {
