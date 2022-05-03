@@ -1,0 +1,7 @@
+{
+  "name": "web",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
