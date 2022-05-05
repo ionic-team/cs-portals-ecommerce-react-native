@@ -8,10 +8,18 @@ This is an example application built using React Native and uses web resources f
 
 To try this demo, you are required to input a Portals registration key. You may get a key by going to ionic.io/register-portals. Follow the instructions below to add your key to the React Native demo application.
 
-Add the registration key by
+Create a `.env` file within the `packages/app` folder containing the following contents:
+
+```bash
+PORTALS_API_KEY=YOUR_KEY_HERE
+```
+
+Replace `YOUR_KEY_HERE` with your key.
+
+---
 
 ```javascript
-// TODO: Instruct user to add key in .env file
+// TODO: Work in progress
 ```
 
 ## Web
