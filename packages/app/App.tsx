@@ -27,6 +27,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import {PORTALS_API_KEY} from '@env';
+
 const Section: React.FC<{
   title: string;
 }> = ({children, title}) => {
@@ -73,10 +75,7 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
+          <Section title="Step One">{PORTALS_API_KEY}</Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>
