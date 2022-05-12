@@ -1342,6 +1342,11 @@
     ionicons "^6.0.0"
     tslib "^2.1.0"
 
+"@ionic/portals@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@ionic/portals/-/portals-0.5.0.tgz#8aa1490e3f67c647dec33d6efb56a16784866f99"
+  integrity sha512-9dVjUoG77k+yFZbcJBAy9XHlehZN2eO6x9gm0HJpDjinbXWy1BUsFUkZQBh4eVGMwKdqPL+BdsgmmeM21vq6rg==
+
 "@ionic/react-router@^6.0.0":
   version "6.1.3"
   resolved "https://registry.yarnpkg.com/@ionic/react-router/-/react-router-6.1.3.tgz#fa2b07a0386cd5e39672d47e32d9144149b63b48"

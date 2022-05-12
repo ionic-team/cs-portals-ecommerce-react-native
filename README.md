@@ -24,6 +24,10 @@ Replace `YOUR_KEY_HERE` with your key.
 
 ## Web
 
+```javascript
+// Add in documentation that @ionic/portals is needed from the web side and @ionic/portals-react-native for RN.
+```
+
 ### Building
 
 Before you build the iOS or Android source you will need to build the web resource:
