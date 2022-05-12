@@ -8,120 +8,192 @@ import {
   IonInput,
   IonItem,
   IonLabel,
+  IonList,
   IonPage,
   IonText,
   IonTitle,
   IonToolbar,
   useIonPicker,
+  useIonRouter,
 } from "@ionic/react";
-import React, { useState } from "react";
-import { Address, defaultAddress, StateCodes, User } from "../shared/models";
+import React, { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { useParams } from "react-router";
+
+import { Address, StateCodes } from "../shared/models";
+import { useData } from "../shared/useData";
 
 const AddressPage: React.FC = () => {
-  const [user, setUser] = useState<User>({
-    id: 1,
-    firstName: "Eric",
-    lastName: "Horodyski",
-    email: "eric@ionic.io",
-    image: "data:abd",
-    addresses: [],
-    creditCards: [],
-  });
-  // REMOVE ABOVE CODE
+  const { id } = useParams<{ id: string }>();
+  const { loading, user, setUserData } = useData();
 
-  const [address, setAddress] = useState<Address>(defaultAddress);
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid },
+    reset,
+  } = useForm<Address>({ mode: "onChange" });
+
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [address, setAddress] = useState<Address>();
   const [present] = useIonPicker();
+  const router = useIonRouter();
 
-  const pickStateCode = () => {
+  useEffect(() => {
+    if (user && id) {
+      const address = user.addresses.find((x) => x.id === parseInt(id, 10));
+      if (address) {
+        setAddress(address);
+        setIsEditing(true);
+      }
+    }
+  }, [user, id]);
+
+  const pickStateCode = (handler: Function, val: string) => {
     present({
       buttons: [
         {
           text: "Confirm",
-          handler: (e) => setAddress({ ...address, state: e.StateCode.value }),
+          handler: (e) => handler(e.StateCode.value),
         },
       ],
       columns: [
         {
           name: "StateCode",
           options: StateCodes.map((code) => ({ text: code, value: code })),
-          selectedIndex: StateCodes.findIndex((x) => x === address.state),
+          selectedIndex: StateCodes.findIndex((x) => x === val),
         },
       ],
     });
   };
 
-  return (
+  const save = async (data: Address) => {
+    let addresses = user.addresses;
+    let idx = id ? parseInt(id) : -1;
+
+    if (data.preferred) {
+      addresses.map((x) => (x.preferred = false));
+    }
+
+    if (isEditing) {
+      addresses = addresses.filter((x) => x.id! !== idx);
+    } else {
+      idx = (Math.max(...addresses.map((x) => x.id!)) || 0) + 1;
+    }
+    addresses.push({ ...data, id: idx });
+
+    await setUserData({ ...user, addresses });
+    reset();
+    router.canGoBack() && router.goBack();
+  };
+
+  return loading ? null : (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Address</IonTitle>
+          <IonTitle>{isEditing ? "Edit" : "Add"} Address</IonTitle>
           <IonButtons slot="start">
             <IonBackButton text="Cancel" />
           </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonItem lines="full">
-          <IonLabel position="fixed">Full Name</IonLabel>
-          <IonInput
-            placeholder=""
-            disabled
-            value={`${user?.firstName} ${user?.lastName}`.trim()}
-          ></IonInput>
-        </IonItem>
-        <IonItem lines="full">
-          <IonLabel position="fixed">Address</IonLabel>
-          <IonInput
-            placeholder=""
-            debounce={500}
-            onIonChange={(event) => {
-              setAddress({ ...address, street: event.detail.value! });
-            }}
-            value={address.street}
-          ></IonInput>
-        </IonItem>
-        <IonItem lines="full">
-          <IonLabel position="fixed">Zip Code</IonLabel>
-          <IonInput
-            placeholder=""
-            type="number"
-            pattern="[0-9]*"
-            debounce={500}
-            onIonChange={(e) =>
-              setAddress({ ...address, postal: e.detail.value! })
-            }
-            value={address.postal}
-          ></IonInput>
-        </IonItem>
-        <IonItem lines="full">
-          <IonLabel position="fixed">City</IonLabel>
-          <IonInput
-            placeholder=""
-            debounce={500}
-            onIonChange={(e) =>
-              setAddress({ ...address, city: e.detail.value! })
-            }
-            value={address.city}
-          ></IonInput>
-        </IonItem>
-        <IonItem lines="full">
-          <IonLabel position="fixed">State</IonLabel>
-          <IonInput
-            placeholder=""
-            onClick={pickStateCode}
-            value={address.state}
-          />
-        </IonItem>
-        <IonItem lines="none">
-          <IonCheckbox
-            checked={address.preferred}
-            onIonChange={() =>
-              setAddress({ ...address, preferred: !address.preferred })
-            }
-          />
-          <IonText>Set as default address</IonText>
-        </IonItem>
-        <IonButton expand="block" onClick={() => {}}>
+        <IonList>
+          <IonItem lines="full">
+            <IonLabel position="fixed">Full Name</IonLabel>
+            <IonInput
+              disabled
+              value={`${user.firstName} ${user.lastName}`.trim()}
+            ></IonInput>
+          </IonItem>
+          <IonItem lines="full">
+            <IonLabel position="fixed">Address</IonLabel>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <IonInput
+                  debounce={500}
+                  onIonChange={(e) => onChange(e.detail.value!)}
+                  value={value}
+                />
+              )}
+              control={control}
+              name="street"
+              rules={{ required: true, minLength: 1 }}
+              defaultValue={address?.street || ""}
+            />
+          </IonItem>
+          <IonItem lines="full">
+            <IonLabel position="fixed">Zip Code</IonLabel>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <IonInput
+                  type="number"
+                  pattern="[0-9]*"
+                  debounce={500}
+                  onIonChange={(e) => onChange(e.detail.value!)}
+                  value={value}
+                />
+              )}
+              control={control}
+              name="postal"
+              rules={{ required: true, minLength: 1 }}
+              defaultValue={address?.postal || ""}
+            />
+          </IonItem>
+          <IonItem lines="full">
+            <IonLabel position="fixed">City</IonLabel>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <IonInput
+                  debounce={500}
+                  onIonChange={(e) => onChange(e.detail.value!)}
+                  value={value}
+                />
+              )}
+              control={control}
+              name="city"
+              rules={{ required: true, minLength: 1 }}
+              defaultValue={address?.city || ""}
+            />
+          </IonItem>
+          <IonItem lines="full">
+            <IonLabel position="fixed">State</IonLabel>
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <IonInput
+                  onIonChange={(e) => onChange(e.detail.value!)}
+                  onClick={() => pickStateCode(onChange, value)}
+                  debounce={500}
+                  value={value}
+                />
+              )}
+              control={control}
+              name="state"
+              rules={{ required: true }}
+              defaultValue={address?.state || ""}
+            />
+          </IonItem>
+          <IonItem lines="none">
+            <Controller
+              render={({ field: { onChange, value } }) => (
+                <IonCheckbox
+                  checked={value}
+                  onIonChange={() => onChange(!value)}
+                />
+              )}
+              control={control}
+              name="preferred"
+              defaultValue={address?.preferred || false}
+            />
+            <IonText>Set as default address</IonText>
+          </IonItem>
+        </IonList>
+        <IonButton
+          type="submit"
+          disabled={!isValid}
+          expand="block"
+          onClick={handleSubmit((data) => save(data))}
+        >
           Save
         </IonButton>
       </IonContent>

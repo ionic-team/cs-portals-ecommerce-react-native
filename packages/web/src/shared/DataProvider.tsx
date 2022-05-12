@@ -4,19 +4,19 @@ import { CheckoutResult, ShopAPI } from "./plugin";
 
 export const DataContext = createContext<{
   loading: boolean;
-  user?: User;
+  user: User;
   setUserData: (user: User) => Promise<void>;
-  cart?: Cart;
+  cart: Cart;
   checkout: (result: CheckoutResult) => Promise<void>;
   userPhoto?: string;
   setUserPhoto: (photo: string) => Promise<void>;
 }>({
   loading: false,
-  user: undefined,
+  user: defaultUser,
   setUserData: () => {
     throw new Error("Method not implemented");
   },
-  cart: undefined,
+  cart: defaultCart,
   checkout: () => {
     throw new Error("Method not implemented");
   },
@@ -42,8 +42,8 @@ export const DataProvider: React.FC = ({ children }) => {
       setUser(values[0]);
       setCart(values[1]);
       setPhoto(values[2].picture);
+      setLoading(false);
     });
-    setLoading(false);
   }, []);
 
   const checkout = async (result: CheckoutResult) => {
@@ -53,6 +53,7 @@ export const DataProvider: React.FC = ({ children }) => {
   };
 
   const setUserData = async (user: User) => {
+    console.log("HELLO");
     setLoading(true);
     await ShopAPI.updateUserDetails(user);
     setUser(user);
