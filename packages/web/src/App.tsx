@@ -23,6 +23,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import HelpPage from "./help/HelpPage";
 
 setupIonicReact();
 
@@ -45,6 +46,9 @@ const App: React.FC<{ context: AppContext }> = ({ context }) => (
 
           <Route path={["/address", "/address/:id"]} exact>
             <AddressPage />
+          </Route>
+          <Route path="/help" exact>
+            <HelpPage />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>
