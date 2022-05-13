@@ -16,6 +16,26 @@ PORTALS_API_KEY=YOUR_KEY_HERE
 
 Replace `YOUR_KEY_HERE` with your key.
 
+## Running the Application
+
+```javascript
+// TODO: Work in progress
+```
+
+## General Architecture
+
+### Web Resources
+
+```javascript
+// TODO: Work in progress
+```
+
+### React Native Application
+
+```javascript
+// TODO: Work in progress
+```
+
 ---
 
 ```javascript

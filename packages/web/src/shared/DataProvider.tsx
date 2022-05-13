@@ -30,7 +30,9 @@ export const DataProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User>(defaultUser);
   const [cart, setCart] = useState<Cart>(defaultCart);
-  const [photo, setPhoto] = useState<string>("");
+  const [photo, setPhoto] = useState<string>(
+    require("../assets/images/default-profile.png")
+  );
 
   useEffect(() => {
     setLoading(true);
@@ -53,7 +55,6 @@ export const DataProvider: React.FC = ({ children }) => {
   };
 
   const setUserData = async (user: User) => {
-    console.log("HELLO");
     setLoading(true);
     await ShopAPI.updateUserDetails(user);
     setUser(user);

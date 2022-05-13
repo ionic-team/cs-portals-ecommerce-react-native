@@ -6,12 +6,3 @@ export interface Address {
   postal: string;
   preferred?: boolean;
 }
-
-export const defaultAddress: Address = {
-  id: 0,
-  city: "",
-  postal: "",
-  state: "",
-  street: "",
-  preferred: false,
-};

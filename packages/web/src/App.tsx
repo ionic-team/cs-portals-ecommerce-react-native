@@ -4,6 +4,7 @@ import { IonReactRouter } from "@ionic/react-router";
 import { DataProvider } from "./shared/DataProvider";
 import AddressPage from "./address/AddressPage";
 import DevPage from "./dev/DevPage";
+import UserDetailPage from "./user/UserDetailPage";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -43,13 +44,10 @@ const App: React.FC<{ context: AppContext }> = ({ context }) => (
               <Redirect to={context.startingRoute} />
             )}
           </Route>
-
-          <Route path={["/address", "/address/:id"]} exact>
-            <AddressPage />
-          </Route>
-          <Route path="/help" exact>
-            <HelpPage />
-          </Route>
+          <Route path="/address" exact component={AddressPage} />
+          <Route path="/address/:id" exact component={AddressPage} />
+          <Route path="/help" exact component={HelpPage} />
+          <Route path="/user" exact component={UserDetailPage} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

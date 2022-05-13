@@ -25,7 +25,7 @@ import { useData } from "../shared/useData";
 
 const AddressPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { loading, user, setUserData } = useData();
+  const { user, setUserData } = useData();
 
   const {
     handleSubmit,
@@ -35,7 +35,6 @@ const AddressPage: React.FC = () => {
   } = useForm<Address>({ mode: "onChange" });
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [address, setAddress] = useState<Address>();
   const [present] = useIonPicker();
   const router = useIonRouter();
 
@@ -43,11 +42,18 @@ const AddressPage: React.FC = () => {
     if (user && id) {
       const address = user.addresses.find((x) => x.id === parseInt(id, 10));
       if (address) {
-        setAddress(address);
+        reset({
+          id: address.id,
+          street: address.street,
+          postal: address.postal,
+          city: address.city,
+          state: address.state,
+          preferred: address.preferred,
+        });
         setIsEditing(true);
       }
     }
-  }, [user, id]);
+  }, [user, id, reset]);
 
   const pickStateCode = (handler: Function, val: string) => {
     present({
@@ -81,13 +87,12 @@ const AddressPage: React.FC = () => {
       idx = (Math.max(...addresses.map((x) => x.id!)) || 0) + 1;
     }
     addresses.push({ ...data, id: idx });
-
     await setUserData({ ...user, addresses });
     reset();
     router.canGoBack() && router.goBack();
   };
 
-  return loading ? null : (
+  return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
@@ -119,7 +124,6 @@ const AddressPage: React.FC = () => {
               control={control}
               name="street"
               rules={{ required: true, minLength: 1 }}
-              defaultValue={address?.street || ""}
             />
           </IonItem>
           <IonItem lines="full">
@@ -137,7 +141,6 @@ const AddressPage: React.FC = () => {
               control={control}
               name="postal"
               rules={{ required: true, minLength: 1 }}
-              defaultValue={address?.postal || ""}
             />
           </IonItem>
           <IonItem lines="full">
@@ -153,7 +156,6 @@ const AddressPage: React.FC = () => {
               control={control}
               name="city"
               rules={{ required: true, minLength: 1 }}
-              defaultValue={address?.city || ""}
             />
           </IonItem>
           <IonItem lines="full">
@@ -170,7 +172,6 @@ const AddressPage: React.FC = () => {
               control={control}
               name="state"
               rules={{ required: true }}
-              defaultValue={address?.state || ""}
             />
           </IonItem>
           <IonItem lines="none">
@@ -183,7 +184,6 @@ const AddressPage: React.FC = () => {
               )}
               control={control}
               name="preferred"
-              defaultValue={address?.preferred || false}
             />
             <IonText>Set as default address</IonText>
           </IonItem>
