@@ -5,6 +5,7 @@ import {
   IonLabel,
   IonButton,
   useIonRouter,
+  IonChip,
 } from "@ionic/react";
 import { CreditCard } from "../models";
 
@@ -25,7 +26,7 @@ export const PaymentItem: React.FC<PaymentItemProps> = ({
 
   const navigateToPayment = (e: any) => {
     e.stopPropagation();
-    router.push(`/payments/${creditCard.id}`);
+    router.push(`/payment/${creditCard.id}`);
   };
 
   return (
@@ -43,6 +44,7 @@ export const PaymentItem: React.FC<PaymentItemProps> = ({
       <IonLabel className="ion-text-wrap">
         {creditCard.company} ending in {creditCard.number.slice(-4)}
       </IonLabel>
+      {creditCard.preferred && <IonChip color="success">Default</IonChip>}
       <IonButton fill="clear" slot="end" onClick={(e) => navigateToPayment(e)}>
         Edit
       </IonButton>

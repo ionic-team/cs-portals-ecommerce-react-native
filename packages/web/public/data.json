@@ -144,7 +144,8 @@
         "number": "4111111111111234",
         "cvv": "111",
         "expirationDate": "2025-06-30T11:59:59Z",
-        "preferred": true
+        "preferred": true,
+        "zip": "53717"
       }
     ]
   }

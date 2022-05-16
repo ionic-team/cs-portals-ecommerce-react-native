@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   IonBackButton,
   IonButton,
@@ -16,7 +17,6 @@ import {
   useIonPicker,
   useIonRouter,
 } from "@ionic/react";
-import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useParams } from "react-router";
 
@@ -42,14 +42,7 @@ const AddressPage: React.FC = () => {
     if (user && id) {
       const address = user.addresses.find((x) => x.id === parseInt(id, 10));
       if (address) {
-        reset({
-          id: address.id,
-          street: address.street,
-          postal: address.postal,
-          city: address.city,
-          state: address.state,
-          preferred: address.preferred,
-        });
+        reset(address);
         setIsEditing(true);
       }
     }

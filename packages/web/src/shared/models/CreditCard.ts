@@ -7,13 +7,3 @@ export interface CreditCard {
   expirationDate: string;
   preferred?: boolean;
 }
-
-export const defaultCreditCard: CreditCard = {
-  id: 0,
-  company: "Visa",
-  cvv: "",
-  expirationDate: "",
-  number: "",
-  zip: "",
-  preferred: false,
-};

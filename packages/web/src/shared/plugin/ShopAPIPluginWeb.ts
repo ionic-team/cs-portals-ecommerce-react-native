@@ -14,9 +14,10 @@ export class ShopAPIPluginWeb extends WebPlugin implements ShopAPIPlugin {
   }
 
   async getUserDetails(): Promise<User> {
-    const response = require("../../assets/data.json") as Data;
+    const response = await fetch("/data.json");
     await this.sleep(1000);
-    return response.user;
+    const data = (await response.json()) as Data;
+    return data.user;
   }
 
   async updateUserDetails(user: User): Promise<void> {
