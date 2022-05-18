@@ -1,7 +1,7 @@
 import React from "react";
 import { IonButton, IonContent, IonPage } from "@ionic/react";
 
-const DevPage: React.FC = () => (
+const DebugPage: React.FC = () => (
   <IonPage>
     <IonContent>
       <IonButton expand="block" href="/help">
@@ -17,4 +17,4 @@ const DevPage: React.FC = () => (
   </IonPage>
 );
 
-export default DevPage;
+export default DebugPage;

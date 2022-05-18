@@ -1,5 +1,14 @@
 # Portals Ecommerce
 
+Eric Notes:
+
+```
+1. Create shared package for data models
+2. Discuss how Context is passed from RN to Ionic React
+3. Diagram out the navigation flow and point out which bits are RN or Ionic React
+4. Convert the entire shop API to pub/sub. Yay!
+```
+
 An e-commerce demo application using Ionic Portals for React Native.
 
 This is an example application built using React Native and uses web resources for their Portals.
@@ -22,7 +31,57 @@ Replace `YOUR_KEY_HERE` with your key.
 // TODO: Work in progress
 ```
 
+Portals for React Native allows you to communicate between a React Native application and web applications presented through
+
 ## General Architecture
+
+### Communication
+
+An initial context is passed from the React Native layer to the web layer of the application:
+
+```typescript
+export interface AppContext {
+  startingRoute: string;
+}
+```
+
+The `startingRoute` property informs the web application of which route to redirect to when the Portal is loaded:
+
+```jsx
+<Route exact path="/">
+  {context.startingRoute !== "/" ? (
+    <Redirect to={context.startingRoute} />
+  ) : (
+    <DebugPage />
+  )}
+</Route>
+```
+
+> **Note:** This demo application contains a "debug page" used when developing the web experience.
+
+The React Native layer publishes messages to topics the web layer subscribes to:
+
+```javascript
+// TODO: This is where shared code will be shown.
+```
+
+And vice versa:
+
+```javascript
+// TODO: This is where shared code will be shown.
+```
+
+### React Native
+
+### Web Application
+
+This demo includes an [Ionic React](https://ionicframework.com/docs/react) project presented through Portals for React Native.
+
+> **Note:** You do not have to utilize the Ionic Framework in order to present a web application within a Portal.
+
+Communication between a React Native
+
+---
 
 ### Web Resources
 

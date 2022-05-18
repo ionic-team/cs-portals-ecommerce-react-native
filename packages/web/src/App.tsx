@@ -3,10 +3,11 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { DataProvider } from "./shared/DataProvider";
 import AddressPage from "./address/AddressPage";
-import DevPage from "./dev/DevPage";
+import DebugPage from "./debug/DebugPage";
 import UserDetailPage from "./user/UserDetailPage";
 import PaymentPage from "./payment/PaymentPage";
 import CheckoutPage from "./checkout/CheckoutPage";
+import HelpPage from "./help/HelpPage";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -26,7 +27,6 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import HelpPage from "./help/HelpPage";
 
 setupIonicReact();
 
@@ -40,10 +40,10 @@ const App: React.FC<{ context: AppContext }> = ({ context }) => (
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path="/">
-            {context.startingRoute === "/" ? (
-              <DevPage />
-            ) : (
+            {context.startingRoute !== "/" ? (
               <Redirect to={context.startingRoute} />
+            ) : (
+              <DebugPage />
             )}
           </Route>
           <Route path="/address" exact component={AddressPage} />
