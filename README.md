@@ -29,82 +29,8 @@ Replace `YOUR_KEY_HERE` with your key.
 
 ```javascript
 // TODO: Work in progress
-```
-
-Portals for React Native allows you to communicate between a React Native application and web applications presented through
-
-## General Architecture
-
-### Communication
-
-An initial context is passed from the React Native layer to the web layer of the application:
-
-```typescript
-export interface AppContext {
-  startingRoute: string;
-}
-```
-
-The `startingRoute` property informs the web application of which route to redirect to when the Portal is loaded:
-
-```jsx
-<Route exact path="/">
-  {context.startingRoute !== "/" ? (
-    <Redirect to={context.startingRoute} />
-  ) : (
-    <DebugPage />
-  )}
-</Route>
-```
-
-> **Note:** This demo application contains a "debug page" used when developing the web experience.
-
-The React Native layer publishes messages to topics the web layer subscribes to:
-
-```javascript
-// TODO: This is where shared code will be shown.
-```
-
-And vice versa:
-
-```javascript
-// TODO: This is where shared code will be shown.
-```
-
-### React Native
-
-### Web Application
-
-This demo includes an [Ionic React](https://ionicframework.com/docs/react) project presented through Portals for React Native.
-
-> **Note:** You do not have to utilize the Ionic Framework in order to present a web application within a Portal.
-
-Communication between a React Native
-
----
-
-### Web Resources
-
-```javascript
-// TODO: Work in progress
-```
-
-### React Native Application
-
-```javascript
-// TODO: Work in progress
-```
-
----
-
-```javascript
-// TODO: Work in progress
-```
-
-## Web
-
-```javascript
-// Add in documentation that @ionic/portals is needed from the web side and @ionic/portals-react-native for RN.
+// 1. Running the RN app
+// 2. Serving the web app for development purposes
 ```
 
 ### Building
@@ -124,3 +50,67 @@ To serve the web application, run the following commands:
 yarn install
 yarn workspace @portals-ecommerce/web start
 ```
+
+## Communication between React Native and Web
+
+One of the key features of Ionic Portals for React Native is facilitating communication between the web and React Native layers of an application.
+
+An initial context is passed from the React Native layer to the web layer of the application:
+
+```typescript
+export interface AppContext {
+  startingRoute: string;
+}
+```
+
+The `startingRoute` property directs the web layer to navigate to the desired route:
+
+```jsx
+<Route exact path="/">
+  {startingRoute !== "/" ? <Redirect to={startingRoute} /> : <DebugPage />}
+</Route>
+```
+
+> **Note:** This demo application contains a "debug page" used when developing the web experience.
+
+Layer-to-layer communication between React Native and web is achieved through publish/subscribe messaging.
+
+Getting and setting user information is one example of pub/sub communication between the React Native and web layers. React Native messages the application's user details and the web layer responds:
+
+**React Native**
+
+```typescript
+//TODO
+```
+
+**Web Application**
+
+```typescript
+//TODO
+```
+
+The web layer can message updated user details to the React Native layer:
+
+**React Native**
+
+```typescript
+//TODO
+```
+
+**Web Application**
+
+```typescript
+//TODO
+```
+
+## General Architecture
+
+### React Native
+
+### Web Application
+
+This demo includes an [Ionic React](https://ionicframework.com/docs/react) project presented through Portals for React Native.
+
+> **Note:** You do not have to utilize the Ionic Framework in order to present a web application within a Portal.
+
+### Shared Library

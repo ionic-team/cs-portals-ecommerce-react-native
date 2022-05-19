@@ -34,14 +34,16 @@ export interface AppContext {
   startingRoute: string;
 }
 
-const App: React.FC<{ context: AppContext }> = ({ context }) => (
+const App: React.FC<{ context: AppContext }> = ({
+  context: { startingRoute },
+}) => (
   <DataProvider>
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path="/">
-            {context.startingRoute !== "/" ? (
-              <Redirect to={context.startingRoute} />
+            {startingRoute !== "/" ? (
+              <Redirect to={startingRoute} />
             ) : (
               <DebugPage />
             )}
