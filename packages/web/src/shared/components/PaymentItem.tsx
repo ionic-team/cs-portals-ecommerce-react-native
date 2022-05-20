@@ -7,7 +7,7 @@ import {
   useIonRouter,
   IonChip,
 } from "@ionic/react";
-import { CreditCard } from "../models";
+import { CreditCard } from "@portals-ecommerce/shared";
 
 interface PaymentItemProps {
   creditCard: CreditCard;

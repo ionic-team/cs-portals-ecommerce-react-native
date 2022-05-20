@@ -1,5 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Cart, defaultCart, defaultUser, User } from "./models";
+import {
+  Cart,
+  defaultCart,
+  defaultUser,
+  User,
+} from "@portals-ecommerce/shared";
 import { CheckoutResult, ShopAPI } from "./plugin";
 
 export const DataContext = createContext<{
@@ -31,7 +36,7 @@ export const DataProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User>(defaultUser);
   const [cart, setCart] = useState<Cart>(defaultCart);
   const [photo, setPhoto] = useState<string>(
-    require("../assets/images/default-profile.png")
+    require("@portals-ecommerce/shared/assets/images/default-profile.png")
   );
 
   useEffect(() => {

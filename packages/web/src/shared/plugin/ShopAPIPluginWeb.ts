@@ -1,5 +1,5 @@
 import { WebPlugin } from "@capacitor/core";
-import { Cart, Data, User } from "../models";
+import { Cart, User } from "@portals-ecommerce/shared";
 import { CheckoutResult, ShopAPIPlugin, UserPicture } from "./definitions";
 
 // This is an implementation that allows for usage when
@@ -14,10 +14,9 @@ export class ShopAPIPluginWeb extends WebPlugin implements ShopAPIPlugin {
   }
 
   async getUserDetails(): Promise<User> {
-    const response = await fetch("/data.json");
+    const response = require("@portals-ecommerce/shared/assets/data.json");
     await this.sleep(1000);
-    const data = (await response.json()) as Data;
-    return data.user;
+    return response.user;
   }
 
   async updateUserDetails(user: User): Promise<void> {
@@ -31,10 +30,11 @@ export class ShopAPIPluginWeb extends WebPlugin implements ShopAPIPlugin {
 
   async getUserPicture(): Promise<UserPicture> {
     this.sleep(1000);
-    return { picture: require("../../assets/images/jt-avatar.png") };
+    const picture = require("@portals-ecommerce/shared/assets/images/jt-avatar.png");
+    return { picture };
   }
 
-  async setUserPicture(picture: UserPicture): Promise<void> {
+  async setUserPicture(_: UserPicture): Promise<void> {
     console.log("Method not implemented.");
   }
 

@@ -1,4 +1,4 @@
-import { Cart, User } from "../models";
+import { Cart, User } from "@portals-ecommerce/shared";
 
 export interface CheckoutResult {
   result: "success" | "cancel" | "failure";

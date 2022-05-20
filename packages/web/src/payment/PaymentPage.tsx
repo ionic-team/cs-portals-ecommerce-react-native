@@ -23,8 +23,7 @@ import {
 } from "@ionic/react";
 import { useForm, Controller } from "react-hook-form";
 import { useParams } from "react-router";
-
-import { CreditCard } from "../shared/models";
+import { CreditCard } from "@portals-ecommerce/shared";
 import { useData } from "../shared/useData";
 
 import "./PaymentPage.css";

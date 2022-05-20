@@ -14,9 +14,9 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import Portals from "@ionic/portals";
+import { Address, CreditCard } from "@portals-ecommerce/shared";
 import { useData } from "../shared/useData";
 import { AddressItem, PaymentItem } from "../shared/components";
-import { Address, CreditCard } from "../shared/models";
 
 import "./CheckoutPage.css";
 

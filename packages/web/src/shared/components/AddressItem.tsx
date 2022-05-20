@@ -7,7 +7,7 @@ import {
   IonLabel,
   useIonRouter,
 } from "@ionic/react";
-import { Address, User } from "../models";
+import { Address, User } from "@portals-ecommerce/shared";
 
 interface AddressItemProps {
   address: Address;
@@ -30,6 +30,7 @@ export const AddressItem: React.FC<AddressItemProps> = ({
     e.stopPropagation();
     router.push(`/address/${address.id}`);
   };
+
   return (
     <IonItem
       button

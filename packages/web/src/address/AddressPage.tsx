@@ -20,7 +20,7 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { useParams } from "react-router";
 
-import { Address, StateCodes } from "../shared/models";
+import { Address, StateCodes } from "@portals-ecommerce/shared";
 import { useData } from "../shared/useData";
 
 const AddressPage: React.FC = () => {
