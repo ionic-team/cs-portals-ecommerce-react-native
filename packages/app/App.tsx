@@ -10,11 +10,11 @@ import TabsContainer from './src/Tabs';
 // import { register } from '@ionic/portals-react-native';
 // import { PORTALS_API_KEY } from '@env';
 
-// register(PORTALS_API_KEY);
-
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const [barStyle, setBarStyle] = useState<StatusBarStyle>('light-content');
+
+  //useEffect(() => register(PORTALS_API_KEY));
 
   useEffect(() => {
     setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
