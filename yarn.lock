@@ -1347,6 +1347,11 @@
     ionicons "^6.0.0"
     tslib "^2.1.0"
 
+"@ionic/portals-react-native@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@ionic/portals-react-native/-/portals-react-native-0.0.1.tgz#145aa1b22ec65a86607f1db93a88c208bb5bc10d"
+  integrity sha512-KBvBMG3qY4FFjq0OSe5+V4ZgrvmQGVFzkxKXRsoUyYivKzd+LC5cikizPkmvGh3vEe71juBNn3sz6d6FdEPAMA==
+
 "@ionic/portals@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@ionic/portals/-/portals-0.5.0.tgz#8aa1490e3f67c647dec33d6efb56a16784866f99"
