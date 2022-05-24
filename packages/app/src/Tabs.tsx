@@ -18,6 +18,20 @@ const getIconImage = (name: string) => {
   }
 };
 
+const getBadgeStyle = (showBadge: boolean) => {
+  if (!showBadge) return {};
+  return {
+    tabBarBadge: '',
+    tabBarBadgeStyle: {
+      minWidth: 8,
+      minHeight: 8,
+      maxWidth: 8,
+      maxHeight: 8,
+      borderRadius: 4,
+    },
+  };
+};
+
 const iconStyle = { width: 22, height: 22 };
 
 const Tabs = createBottomTabNavigator();
@@ -41,7 +55,7 @@ const TabsContainer = () => {
         <Tabs.Screen
           name="CartStack"
           component={CartStackScreens}
-          options={{ tabBarBadge: 3 }}
+          options={() => getBadgeStyle(true)}
         />
         <Tabs.Screen name="Profile" component={ProfileScreen} />
       </Tabs.Navigator>
