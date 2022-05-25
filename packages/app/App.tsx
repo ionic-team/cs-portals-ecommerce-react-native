@@ -6,6 +6,7 @@ import {
   StyleSheet,
   useColorScheme,
 } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import TabsContainer from './src/Tabs';
 // import { register } from '@ionic/portals-react-native';
 // import { PORTALS_API_KEY } from '@env';
@@ -23,7 +24,9 @@ const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle={barStyle} />
-      <TabsContainer />
+      <SafeAreaProvider>
+        <TabsContainer />
+      </SafeAreaProvider>
     </SafeAreaView>
   );
 };

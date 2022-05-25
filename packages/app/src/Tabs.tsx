@@ -28,6 +28,8 @@ const getBadgeStyle = (showBadge: boolean) => {
       maxWidth: 8,
       maxHeight: 8,
       borderRadius: 4,
+      marginTop: 4,
+      marginLeft: 8,
     },
   };
 };
