@@ -35,10 +35,11 @@ Replace `YOUR_KEY_HERE` with your key.
 
 ### Building
 
-Before you build the iOS or Android source you will need to build the web resource:
+Before you build the iOS or Android source you will need to build the web resource and the shared library:
 
 ```bash
 yarn install
+yarn workspace @portals-ecommerce/shared build
 yarn workspace @portals-ecommerce/web build
 ```
 

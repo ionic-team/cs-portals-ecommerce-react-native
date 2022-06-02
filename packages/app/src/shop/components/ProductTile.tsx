@@ -28,11 +28,11 @@ export const ProductTile: React.FC<Props> = ({ item }) => {
 const styles = StyleSheet.create({
   item: {
     margin: 10,
-    marginRight: 0,
+    marginRight: 15,
   },
   image: {
-    width: 208,
-    height: 208,
+    width: 156,
+    height: 142,
     borderRadius: 12,
   },
   text: {

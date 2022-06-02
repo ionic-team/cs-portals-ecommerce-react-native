@@ -9,47 +9,67 @@ import {
 } from 'react-native';
 import { useProduct } from './useProduct';
 import { FeaturedProductTile, ProductTile } from './components';
+import Styles from './Styles';
 
 export const ShopScreen: React.FC = () => {
   const { products, mustHaves } = useProduct();
 
-  const SECTIONS = [
+  const sections = [
     {
       title: 'Must Haves, Bestsellers & More',
-      horizontal: true,
-      data: mustHaves,
+      key: 'must-haves',
+      data: [
+        {
+          key: 'must-haves-data',
+          list: mustHaves,
+          horizontal: true,
+        },
+      ],
     },
     {
-      title: 'Punk and hardcore',
-      data: products,
+      title: 'Products',
+      key: 'products',
+      data: [
+        {
+          key: 'products-data',
+          list: products,
+          horizontal: false,
+        },
+      ],
     },
   ];
 
+  const renderSection = ({ item: section }: any) => {
+    return section.horizontal ? (
+      <FlatList
+        horizontal
+        data={section.list}
+        renderItem={({ item }) => <FeaturedProductTile item={item} />}
+        keyExtractor={(item) => item.id.toString()}
+        showsHorizontalScrollIndicator={false}
+        style={styles.horizontalFlatListPaddingBottom}
+      />
+    ) : (
+      <FlatList
+        data={section.list}
+        numColumns={2}
+        renderItem={({ item }) => <ProductTile item={item} />}
+        keyExtractor={(item) => item.id.toString()}
+        columnWrapperStyle={styles.flatListJustifyContent}
+      />
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
+    <View style={[Styles.flex, Styles.bgWhite]}>
+      <SafeAreaView style={[Styles.flex, styles.viewMarginLeft]}>
         <SectionList
           stickySectionHeadersEnabled={false}
-          sections={SECTIONS}
+          sections={sections}
           renderSectionHeader={({ section }) => (
-            <>
-              <Text style={styles.sectionHeader}>{section.title}</Text>
-              {section.horizontal ? (
-                <FlatList
-                  horizontal
-                  data={mustHaves}
-                  renderItem={({ item }) => <FeaturedProductTile item={item} />}
-                  showsHorizontalScrollIndicator={false}
-                />
-              ) : null}
-            </>
+            <Text style={Styles.heading}>{section.title}</Text>
           )}
-          renderItem={({ item, section }) => {
-            if (section.horizontal) {
-              return null;
-            }
-            return <ProductTile item={item} />;
-          }}
+          renderItem={renderSection}
         />
       </SafeAreaView>
     </View>
@@ -57,24 +77,7 @@ export const ShopScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  sectionHeader: {
-    fontSize: 20,
-    marginTop: 0,
-    marginBottom: 5,
-  },
-  item: {
-    margin: 10,
-    marginLeft: 0,
-  },
-  itemPhoto: {
-    width: 200,
-    height: 200,
-  },
-  itemText: {
-    marginTop: 5,
-  },
+  viewMarginLeft: { marginLeft: 5 },
+  flatListJustifyContent: { justifyContent: 'space-between' },
+  horizontalFlatListPaddingBottom: { paddingBottom: 10 },
 });
