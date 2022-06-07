@@ -8,12 +8,6 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
   },
-  heading: {
-    fontSize: 20,
-    marginHorizontal: 10,
-    marginTop: 10,
-    marginBottom: 5,
-  },
 });
 
 export default Styles;

@@ -67,7 +67,7 @@ export const ShopScreen: React.FC = () => {
           stickySectionHeadersEnabled={false}
           sections={sections}
           renderSectionHeader={({ section }) => (
-            <Text style={Styles.heading}>{section.title}</Text>
+            <Text style={styles.sectionHeader}>{section.title}</Text>
           )}
           renderItem={renderSection}
         />
@@ -80,4 +80,10 @@ const styles = StyleSheet.create({
   viewMarginLeft: { marginLeft: 5 },
   flatListJustifyContent: { justifyContent: 'space-between' },
   horizontalFlatListPaddingBottom: { paddingBottom: 10 },
+  sectionHeader: {
+    fontSize: 20,
+    marginHorizontal: 10,
+    marginTop: 10,
+    marginBottom: 5,
+  },
 });

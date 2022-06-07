@@ -7,13 +7,20 @@ import { ProductProvider } from './ProductProvider';
 const ShopStack = createNativeStackNavigator();
 export const ShopStackScreens = () => (
   <ProductProvider>
-    <ShopStack.Navigator
-      screenOptions={{
-        headerLargeTitle: true,
-        headerLargeTitleShadowVisible: false,
-      }}>
-      <ShopStack.Screen name="Shop" component={ShopScreen} />
-      <ShopStack.Screen name="ItemDetail" component={ItemDetailScreen} />
+    <ShopStack.Navigator>
+      <ShopStack.Screen
+        options={{
+          headerLargeTitle: true,
+          headerLargeTitleShadowVisible: false,
+        }}
+        name="Shop"
+        component={ShopScreen}
+      />
+      <ShopStack.Screen
+        name="ItemDetail"
+        component={ItemDetailScreen}
+        options={{ title: '' }}
+      />
     </ShopStack.Navigator>
   </ProductProvider>
 );

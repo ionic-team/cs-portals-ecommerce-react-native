@@ -6,10 +6,14 @@ export const ProductContext = createContext<{
   products: Product[];
   mustHaves: Product[];
   productImages: ImageSourcePropType[];
+  getProduct: (id: number) => Product | undefined;
 }>({
   products: [],
   mustHaves: [],
   productImages: [],
+  getProduct: () => {
+    throw new Error('Method not implemented');
+  },
 });
 
 export const ProductProvider: React.FC = ({ children }) => {
@@ -42,8 +46,11 @@ export const ProductProvider: React.FC = ({ children }) => {
     require('@portals-ecommerce/shared/assets/images/ionitron-shirt.png'),
   ];
 
+  const getProduct = (id: number) => products.find((p) => p.id === id);
+
   return (
-    <ProductContext.Provider value={{ products, mustHaves, productImages }}>
+    <ProductContext.Provider
+      value={{ products, mustHaves, productImages, getProduct }}>
       {children}
     </ProductContext.Provider>
   );

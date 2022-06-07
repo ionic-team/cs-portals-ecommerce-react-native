@@ -3,6 +3,7 @@ import { Image, Pressable, StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Product } from '@portals-ecommerce/shared';
 import { useProduct } from '../useProduct';
+import { Colors, setForegroundColor } from '../../shared';
 
 type Props = { item: Product };
 
@@ -20,7 +21,9 @@ export const FeaturedProductTile: React.FC<Props> = ({ item }) => {
         resizeMode="cover"
       />
       <Text style={styles.text}>{item.title}</Text>
-      <Text style={[styles.price, styles.text]}>${item.price}</Text>
+      <Text style={[setForegroundColor(Colors.medium), styles.text]}>
+        ${item.price}
+      </Text>
     </Pressable>
   );
 };
@@ -38,8 +41,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     paddingTop: 5,
-  },
-  price: {
-    color: '#888',
   },
 });

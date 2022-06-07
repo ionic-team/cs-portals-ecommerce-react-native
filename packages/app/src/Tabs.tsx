@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ShopStackScreens } from './shop';
 import { CartStackScreens } from './cart';
 import { ProfileScreen } from './profile';
+import { Colors } from './shared';
 
 const getIconImage = (name: string) => {
   switch (name) {
@@ -23,13 +24,12 @@ const getBadgeStyle = (showBadge: boolean) => {
   return {
     tabBarBadge: '',
     tabBarBadgeStyle: {
+      backgroundColor: Colors.warning,
+      marginTop: 6,
+      marginLeft: 10,
       minWidth: 8,
-      minHeight: 8,
-      maxWidth: 8,
       maxHeight: 8,
       borderRadius: 4,
-      marginTop: 4,
-      marginLeft: 8,
     },
   };
 };
