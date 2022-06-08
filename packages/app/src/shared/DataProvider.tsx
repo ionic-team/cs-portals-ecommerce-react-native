@@ -13,11 +13,19 @@ export const DataContext = createContext<{
   user: User | undefined;
   cart: Cart | undefined;
   addToCart: (product: Product) => void;
+  removeFromCart: (product: Product) => void;
+  updateQuantity: (product: Product, quantity: number) => void;
 }>({
   user: undefined,
   cart: undefined,
   addToCart: () => {
     throw new Error('Method not Implemented');
+  },
+  removeFromCart: () => {
+    throw new Error('Method not Implemented');
+  },
+  updateQuantity: () => {
+    throw new Error('Method not implemented');
   },
 });
 
@@ -31,12 +39,23 @@ export const DataProvider: React.FC = ({ children }) => {
   }, []);
 
   const addToCart = (product: Product) => {
-    const { id, price } = product;
-    dispatch({ type: 'addToBasket', price, pid: id });
+    const { id: pid, price } = product;
+    dispatch({ type: 'addToBasket', price, pid });
+  };
+
+  const removeFromCart = (product: Product) => {
+    const { id: pid } = product;
+    dispatch({ type: 'removeFromBasket', pid });
+  };
+
+  const updateQuantity = (product: Product, quantity: number) => {
+    const { id: pid } = product;
+    dispatch({ type: 'updateQuantity', pid, quantity });
   };
 
   return (
-    <DataContext.Provider value={{ cart, user, addToCart }}>
+    <DataContext.Provider
+      value={{ cart, user, addToCart, removeFromCart, updateQuantity }}>
       {children}
     </DataContext.Provider>
   );

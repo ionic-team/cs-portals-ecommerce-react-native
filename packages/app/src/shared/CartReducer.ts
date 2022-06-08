@@ -20,8 +20,8 @@ const reducer = (state: Cart, action: Action) => {
         basket.push({ productId: pid, quantity: 1 });
       }
       return { ...state, subTotal: state.subTotal + price, basket };
-    // case 'removeFromCart':
-    // case 'updateQuantity':
+    case 'removeFromBasket':
+    case 'updateQuantity':
     default:
       throw new Error();
   }
