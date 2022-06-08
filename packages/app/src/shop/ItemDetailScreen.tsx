@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Alert, Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { Product } from '@portals-ecommerce/shared';
 import { useProduct } from './useProduct';
 import Styles from './Styles';
-import { BlockButton, Colors, setForegroundColor } from '../shared';
+import { BlockButton, Colors, setForegroundColor, useData } from '../shared';
 
 export const ItemDetailScreen: React.FC = () => {
   const navigation = useNavigation();
   const { params } = useRoute<any>();
   const { getProduct, productImages } = useProduct();
+  const { addToCart } = useData();
   const [product, setProduct] = useState<Product>();
 
   useEffect(() => {
@@ -46,10 +47,7 @@ export const ItemDetailScreen: React.FC = () => {
             </Text>
             <Text style={[styles.description]}>{product.description}</Text>
           </View>
-          <BlockButton
-            onPress={() => Alert.alert('You pressed me!')}
-            title="Add to cart"
-          />
+          <BlockButton onPress={() => addToCart(product)} title="Add to cart" />
         </>
       )}
     </View>

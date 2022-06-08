@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable curly */
+import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -6,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ShopStackScreens } from './shop';
 import { CartStackScreens } from './cart';
 import { ProfileScreen } from './profile';
-import { Colors } from './shared';
+import { Colors, useData } from './shared';
 
 const getIconImage = (name: string) => {
   switch (name) {
@@ -19,25 +20,29 @@ const getIconImage = (name: string) => {
   }
 };
 
-const getBadgeStyle = (showBadge: boolean) => {
-  if (!showBadge) return {};
-  return {
-    tabBarBadge: '',
-    tabBarBadgeStyle: {
-      backgroundColor: Colors.warning,
-      marginTop: 6,
-      marginLeft: 10,
-      minWidth: 8,
-      maxHeight: 8,
-      borderRadius: 4,
-    },
-  };
+const badgeStyle = {
+  tabBarBadge: '',
+  tabBarBadgeStyle: {
+    backgroundColor: Colors.warning,
+    marginTop: 6,
+    marginLeft: 10,
+    minWidth: 8,
+    maxHeight: 8,
+    borderRadius: 4,
+  },
 };
 
 const iconStyle = { width: 22, height: 22 };
 
 const Tabs = createBottomTabNavigator();
 const TabsContainer = () => {
+  const { cart } = useData();
+  const [badgeOptions, setBadgeOptions] = useState({});
+
+  useEffect(() => {
+    setBadgeOptions(cart?.basket.length ? badgeStyle : {});
+  }, [cart]);
+
   return (
     <NavigationContainer>
       <Tabs.Navigator
@@ -57,7 +62,7 @@ const TabsContainer = () => {
         <Tabs.Screen
           name="CartStack"
           component={CartStackScreens}
-          options={() => getBadgeStyle(true)}
+          options={badgeOptions}
         />
         <Tabs.Screen name="Profile" component={ProfileScreen} />
       </Tabs.Navigator>
