@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const Styles = StyleSheet.create({
+export const Styles = StyleSheet.create({
   bgWhite: { backgroundColor: 'white' },
   flex: { flex: 1 },
   center: {
@@ -8,6 +8,10 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
   },
+  headingFontSize: {
+    fontSize: 26,
+  },
+  subHeadingFontSize: {
+    fontSize: 20,
+  },
 });
-
-export default Styles;

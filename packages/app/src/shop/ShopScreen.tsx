@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useProduct } from './useProduct';
 import { FeaturedProductTile, ProductTile } from './components';
-import Styles from './Styles';
+import { Styles } from '../shared';
 
 export const ShopScreen: React.FC = () => {
   const { products, mustHaves } = useProduct();
@@ -67,7 +67,9 @@ export const ShopScreen: React.FC = () => {
           stickySectionHeadersEnabled={false}
           sections={sections}
           renderSectionHeader={({ section }) => (
-            <Text style={styles.sectionHeader}>{section.title}</Text>
+            <Text style={[Styles.subHeadingFontSize, styles.sectionHeader]}>
+              {section.title}
+            </Text>
           )}
           renderItem={renderSection}
         />
@@ -81,7 +83,6 @@ const styles = StyleSheet.create({
   flatListJustifyContent: { justifyContent: 'space-between' },
   horizontalFlatListPaddingBottom: { paddingBottom: 10 },
   sectionHeader: {
-    fontSize: 20,
     marginHorizontal: 10,
     marginTop: 10,
     marginBottom: 5,

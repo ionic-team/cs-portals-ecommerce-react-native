@@ -7,7 +7,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { DataProvider } from './src/shared/DataProvider';
+import { DataProvider } from './src/shared';
 import TabsContainer from './src/Tabs';
 // import { register } from '@ionic/portals-react-native';
 // import { PORTALS_API_KEY } from '@env';

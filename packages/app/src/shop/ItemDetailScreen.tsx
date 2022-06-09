@@ -3,7 +3,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { Product } from '@portals-ecommerce/shared';
 import { useProduct } from './useProduct';
-import Styles from './Styles';
+import { Styles } from '../shared';
 import { BlockButton, Colors, setForegroundColor, useData } from '../shared';
 
 export const ItemDetailScreen: React.FC = () => {
@@ -22,8 +22,10 @@ export const ItemDetailScreen: React.FC = () => {
 
   const renderErrorView = () => (
     <View style={[Styles.center, Styles.flex]}>
-      <Text style={styles.heading}>Something went wrong</Text>
-      <Text style={styles.subheading}>Why don't you try again?</Text>
+      <Text style={Styles.headingFontSize}>Something went wrong</Text>
+      <Text style={[Styles.subHeadingFontSize, styles.subheading]}>
+        Why don't you try again?
+      </Text>
       <Button title="Back to Shopping" onPress={() => navigation.goBack()} />
     </View>
   );
@@ -41,7 +43,7 @@ export const ItemDetailScreen: React.FC = () => {
             />
           </View>
           <View style={styles.containerDescription}>
-            <Text style={styles.heading}>{product.title}</Text>
+            <Text style={Styles.headingFontSize}>{product.title}</Text>
             <Text style={[setForegroundColor(Colors.medium), styles.price]}>
               ${product.price}
             </Text>
@@ -55,13 +57,9 @@ export const ItemDetailScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  heading: {
-    fontSize: 26,
-  },
   subheading: {
     paddingTop: 10,
     textAlign: 'center',
-    fontSize: 20,
   },
   containerImage: {
     height: '60%',
