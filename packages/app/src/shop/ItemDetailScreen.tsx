@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { Product } from '@portals-ecommerce/shared';
-import { useProduct } from './useProduct';
-import { Styles } from '../shared';
+import { Styles, useProduct } from '../shared';
 import { BlockButton, Colors, setForegroundColor, useData } from '../shared';
 
 export const ItemDetailScreen: React.FC = () => {
@@ -30,6 +29,11 @@ export const ItemDetailScreen: React.FC = () => {
     </View>
   );
 
+  const handleAddToCart = (productToAdd: Product) => {
+    addToCart(productToAdd);
+    navigation.goBack();
+  };
+
   return (
     <View style={[Styles.bgWhite, Styles.flex]}>
       {!product ? (
@@ -49,7 +53,10 @@ export const ItemDetailScreen: React.FC = () => {
             </Text>
             <Text style={[styles.description]}>{product.description}</Text>
           </View>
-          <BlockButton onPress={() => addToCart(product)} title="Add to cart" />
+          <BlockButton
+            onPress={() => handleAddToCart(product)}
+            title="Add to cart"
+          />
         </>
       )}
     </View>

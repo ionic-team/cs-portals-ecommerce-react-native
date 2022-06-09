@@ -4,10 +4,13 @@ import { CartScreen } from './CartScreen';
 
 const CartStack = createNativeStackNavigator();
 export const CartStackScreens = () => (
-  <CartStack.Navigator screenOptions={{ headerLargeTitle: true }}>
+  <CartStack.Navigator
+    screenOptions={{
+      headerLargeTitle: true,
+      headerLargeTitleShadowVisible: false,
+    }}>
     <CartStack.Screen name="Cart" component={CartScreen} />
   </CartStack.Navigator>
 );
 
-/** Barrel Files */
 export * from './CartScreen';

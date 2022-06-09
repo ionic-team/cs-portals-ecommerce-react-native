@@ -7,9 +7,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import { useProduct } from './useProduct';
 import { FeaturedProductTile, ProductTile } from './components';
-import { Styles } from '../shared';
+import { Styles, useProduct } from '../shared';
 
 export const ShopScreen: React.FC = () => {
   const { products, mustHaves } = useProduct();

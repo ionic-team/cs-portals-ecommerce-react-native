@@ -7,7 +7,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { DataProvider } from './src/shared';
+import { DataProvider, ProductProvider } from './src/shared';
 import TabsContainer from './src/Tabs';
 // import { register } from '@ionic/portals-react-native';
 // import { PORTALS_API_KEY } from '@env';
@@ -27,7 +27,9 @@ const App = () => {
       <StatusBar barStyle={barStyle} />
       <SafeAreaProvider>
         <DataProvider>
-          <TabsContainer />
+          <ProductProvider>
+            <TabsContainer />
+          </ProductProvider>
         </DataProvider>
       </SafeAreaProvider>
     </SafeAreaView>

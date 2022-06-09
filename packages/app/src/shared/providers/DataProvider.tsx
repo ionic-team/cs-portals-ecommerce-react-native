@@ -14,7 +14,7 @@ export const DataContext = createContext<{
   cart: Cart | undefined;
   addToCart: (product: Product) => void;
   removeFromCart: (product: Product) => void;
-  updateQuantity: (product: Product, quantity: number) => void;
+  updateQuantity: (product: Product, action: 'add' | 'remove') => void;
 }>({
   user: undefined,
   cart: undefined,
@@ -48,9 +48,13 @@ export const DataProvider: React.FC = ({ children }) => {
     dispatch({ type: 'removeFromBasket', pid });
   };
 
-  const updateQuantity = (product: Product, quantity: number) => {
-    const { id: pid } = product;
-    dispatch({ type: 'updateQuantity', pid, quantity });
+  const updateQuantity = (product: Product, action: 'add' | 'remove') => {
+    const { id: pid, price } = product;
+    if (action === 'add') {
+      dispatch({ type: 'addToQuantity', pid, price });
+    } else {
+      dispatch({ type: 'removeFromQuantity', pid, price });
+    }
   };
 
   return (

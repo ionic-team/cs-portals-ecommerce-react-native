@@ -14,4 +14,7 @@ export const Styles = StyleSheet.create({
   subHeadingFontSize: {
     fontSize: 20,
   },
+  textRight: {
+    textAlign: 'right',
+  },
 });

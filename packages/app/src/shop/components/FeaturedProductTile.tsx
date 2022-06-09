@@ -2,8 +2,7 @@ import React from 'react';
 import { Image, Pressable, StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Product } from '@portals-ecommerce/shared';
-import { useProduct } from '../useProduct';
-import { Colors, setForegroundColor } from '../../shared';
+import { Colors, setForegroundColor, useProduct } from '../../shared';
 
 type Props = { item: Product };
 
