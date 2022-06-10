@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 8,
     marginVertical: 4,
-    marginHorizontal: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },

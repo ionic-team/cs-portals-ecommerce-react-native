@@ -52,11 +52,11 @@ export const ItemDetailScreen: React.FC = () => {
               ${product.price}
             </Text>
             <Text style={[styles.description]}>{product.description}</Text>
+            <BlockButton
+              onPress={() => handleAddToCart(product)}
+              title="Add to cart"
+            />
           </View>
-          <BlockButton
-            onPress={() => handleAddToCart(product)}
-            title="Add to cart"
-          />
         </>
       )}
     </View>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     height: '60%',
   },
   containerDescription: {
-    padding: 10,
+    padding: 15,
     justifyContent: 'flex-end',
     flex: 3,
   },
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   description: {
-    marginTop: 10,
+    marginVertical: 10,
     fontSize: 16,
     lineHeight: 20,
   },

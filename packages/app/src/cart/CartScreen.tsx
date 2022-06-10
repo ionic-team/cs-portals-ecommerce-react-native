@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { BlockButton, Colors, Styles, useData } from '../shared';
 import { CartListItem } from './components/CartListItem';
+import { SubtotalContainer } from './components';
 
 export const CartScreen: React.FC = () => {
   const navigation = useNavigation<BottomTabNavigationProp<any>>();
@@ -39,25 +40,13 @@ export const CartScreen: React.FC = () => {
               />
             )}
             keyExtractor={(item) => item.productId.toString()}
+            ListFooterComponent={
+              <>
+                <SubtotalContainer subTotal={cart!.subTotal} />
+                <BlockButton title="Checkout" onPress={() => {}} />
+              </>
+            }
           />
-          <View style={[styles.horizontalRule, styles.bodyMargin]} />
-          <View style={[styles.bodyMargin, styles.row]}>
-            <Text style={styles.label}>Subtotal</Text>
-            <Text style={styles.label}>{`$${cart!.subTotal}`}</Text>
-          </View>
-          <View style={[styles.bodyMargin, styles.row]}>
-            <Text style={styles.label}>Shipping</Text>
-            <Text style={styles.label}>Standard - Free</Text>
-          </View>
-          <View style={[styles.bodyMargin, styles.row, styles.totalRowMargin]}>
-            <Text style={[styles.label, styles.boldLabel]}>
-              Estimated Total
-            </Text>
-            <Text style={[styles.label, styles.boldLabel]}>
-              {`$${cart!.subTotal}`} + Tax
-            </Text>
-          </View>
-          <BlockButton title="Checkout" onPress={() => {}} />
         </SafeAreaView>
       )}
     </View>
