@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { BlockButton, Colors, Styles, useData } from '../shared';
+import { BlockButton, Styles, useData } from '../shared';
 import { CartListItem } from './components/CartListItem';
 import { SubtotalContainer } from './components';
 
@@ -56,27 +56,5 @@ export const CartScreen: React.FC = () => {
 const styles = StyleSheet.create({
   bodyMargin: {
     marginHorizontal: 15,
-  },
-  horizontalRule: {
-    backgroundColor: Colors.medium,
-    height: 1,
-    marginTop: 15,
-    marginBottom: 30,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  label: {
-    color: Colors.medium,
-    fontSize: 16,
-  },
-  boldLabel: {
-    color: Colors.dark,
-    fontWeight: 'bold',
-  },
-  totalRowMargin: {
-    marginBottom: 20,
   },
 });

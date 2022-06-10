@@ -9,7 +9,7 @@ type Props = { productId: number; quantity: number };
 
 export const CartListItem: React.FC<Props> = ({ productId, quantity }) => {
   const { getProduct, productImages } = useProduct();
-  const { updateQuantity } = useData();
+  const { updateQuantity, removeFromCart } = useData();
   const [product, setProduct] = useState<Product>();
 
   useEffect(() => {
@@ -23,7 +23,10 @@ export const CartListItem: React.FC<Props> = ({ productId, quantity }) => {
   };
 
   const handleSubtract = () => {
-    if (product && quantity > 0) {
+    if (product && quantity === 1) {
+      removeFromCart(product);
+    }
+    if (product && quantity > 1) {
       updateQuantity(product, 'remove');
     }
   };

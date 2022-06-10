@@ -5,8 +5,7 @@ type Action =
   | { type: 'addToBasket'; pid: number; price: number }
   | { type: 'addToQuantity'; pid: number; price: number }
   | { type: 'removeFromQuantity'; pid: number; price: number }
-  | { type: 'removeFromBasket'; pid: number }
-  | { type: 'updateQuantity'; pid: number; quantity: number };
+  | { type: 'removeFromBasket'; pid: number; price: number };
 
 const reducer = (state: Cart, action: Action) => {
   switch (action.type) {
@@ -28,10 +27,9 @@ const reducer = (state: Cart, action: Action) => {
     case 'removeFromQuantity':
       state.basket.forEach((i) => i.productId === action.pid && i.quantity--);
       return { ...state, subTotal: state.subTotal - action.price };
-    case 'updateQuantity':
-      console.log(action);
-      return state;
     case 'removeFromBasket':
+      const basket = state.basket.filter((p) => p.productId !== action.pid);
+      return { ...state, subTotal: state.subTotal - action.price, basket };
     default:
       throw new Error();
   }

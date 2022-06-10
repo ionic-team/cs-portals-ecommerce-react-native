@@ -44,8 +44,8 @@ export const DataProvider: React.FC = ({ children }) => {
   };
 
   const removeFromCart = (product: Product) => {
-    const { id: pid } = product;
-    dispatch({ type: 'removeFromBasket', pid });
+    const { id: pid, price } = product;
+    dispatch({ type: 'removeFromBasket', pid, price });
   };
 
   const updateQuantity = (product: Product, action: 'add' | 'remove') => {
