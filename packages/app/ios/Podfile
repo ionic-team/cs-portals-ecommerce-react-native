@@ -19,6 +19,7 @@ target 'PortalsEcommerce' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod "IonicLiveUpdates", "~> 0.0.5"
   target 'PortalsEcommerceTests' do
     inherit! :complete
     # Pods for testing

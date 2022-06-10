@@ -3,10 +3,12 @@
 Eric Notes:
 
 ```
-1. Create shared package for data models
-2. Discuss how Context is passed from RN to Ionic React
-3. Diagram out the navigation flow and point out which bits are RN or Ionic React
-4. Convert the entire shop API to pub/sub. Yay!
+1. Diagram out the navigation flow and point out which bits are RN or Ionic React
+2. Convert the entire shop API to pub/sub. Yay!
+3. Document registering/adding Portals OUTSIDE of the React rendering lifecycle.
+4. Step to add Live Updates package to Podfile
+RN start is metro
+
 ```
 
 An e-commerce demo application using Ionic Portals for React Native.

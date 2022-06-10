@@ -2,6 +2,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ShopScreen } from './ShopScreen';
 import { ItemDetailScreen } from './ItemDetailScreen';
+import { HelpScreen } from './HelpScreen';
+import { HelpHeaderButton } from './components';
 
 const ShopStack = createNativeStackNavigator();
 export const ShopStackScreens = () => (
@@ -17,7 +19,19 @@ export const ShopStackScreens = () => (
     <ShopStack.Screen
       name="ItemDetail"
       component={ItemDetailScreen}
-      options={{ title: '' }}
+      options={{
+        title: '',
+        headerRight: () => <HelpHeaderButton />,
+      }}
+    />
+    <ShopStack.Screen
+      name="Help"
+      component={HelpScreen}
+      options={{
+        title: '',
+        headerBackTitleVisible: false,
+        headerShadowVisible: false,
+      }}
     />
   </ShopStack.Navigator>
 );

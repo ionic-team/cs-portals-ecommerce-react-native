@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, Pressable, View } from 'react-native';
 import { Colors, setForegroundColor } from '../../shared';
 
 type Props = {
@@ -22,21 +22,21 @@ export const QuantitySelector: React.FC<Props> = ({
       ]}>
       Qty:
     </Text>
-    <TouchableOpacity onPress={() => onSubtract()}>
+    <Pressable onPress={() => onSubtract()}>
       <Image
         style={styles.icon}
         source={require('../../assets/images/remove-circle-outline.png')}
       />
-    </TouchableOpacity>
+    </Pressable>
     <Text style={[setForegroundColor(Colors.medium), styles.fontSize]}>
       {quantity}
     </Text>
-    <TouchableOpacity onPress={() => onAdd()}>
+    <Pressable onPress={() => onAdd()}>
       <Image
         style={styles.icon}
         source={require('../../assets/images/add-circle-outline.png')}
       />
-    </TouchableOpacity>
+    </Pressable>
   </View>
 );
 
