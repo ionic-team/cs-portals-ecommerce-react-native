@@ -17,6 +17,7 @@ import {
 } from "@ionic/react";
 import { add } from "ionicons/icons";
 import { Camera, CameraDirection, CameraResultType } from "@capacitor/camera";
+import Portals, { PortalSubscription } from "@ionic/portals";
 import { useForm, Controller } from "react-hook-form";
 
 import { useData } from "../shared/useData";
@@ -37,7 +38,6 @@ const UserDetailPage: React.FC = () => {
   });
   const router = useIonRouter();
   const [cameraImage, setCameraImage] = useState<string>("");
-
   const [showCropModal, hideCropModal] = useIonModal(
     <ImageCropper
       image={cameraImage}
@@ -77,7 +77,7 @@ const UserDetailPage: React.FC = () => {
   return (
     <IonPage id="user-detail-page">
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="white">
           <IonTitle>Profile</IonTitle>
         </IonToolbar>
       </IonHeader>

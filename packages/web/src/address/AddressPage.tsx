@@ -88,7 +88,7 @@ const AddressPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="white">
           <IonTitle>{isEditing ? "Edit" : "Add"} Address</IonTitle>
           <IonButtons slot="start">
             <IonBackButton text="Cancel" />

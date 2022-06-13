@@ -86,7 +86,7 @@ const PaymentPage: React.FC = () => {
   return (
     <IonPage id="payment-page">
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="white">
           <IonTitle>{isEditing ? "Edit" : "Add"} Payment Method</IonTitle>
           <IonButtons slot="start">
             <IonBackButton text="Cancel" />

@@ -1,16 +1,16 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import {
   Cart,
   defaultCart,
   defaultUser,
   User,
+  CheckoutResult,
 } from "@portals-ecommerce/shared";
-import { CheckoutResult, ShopAPI } from "./plugin";
 
 export const DataContext = createContext<{
   loading: boolean;
   user: User;
-  setUserData: (user: User) => Promise<void>;
+  setUserData: (user: User) => void;
   cart: Cart;
   checkout: (result: CheckoutResult) => Promise<void>;
   userPhoto?: string;
@@ -39,36 +39,22 @@ export const DataProvider: React.FC = ({ children }) => {
     require("@portals-ecommerce/shared/assets/images/default-profile.png")
   );
 
-  useEffect(() => {
-    setLoading(true);
-    Promise.all([
-      ShopAPI.getUserDetails(),
-      ShopAPI.getCart(),
-      ShopAPI.getUserPicture(),
-    ]).then((values) => {
-      setUser(values[0]);
-      setCart(values[1]);
-      setPhoto(values[2].picture);
-      setLoading(false);
-    });
-  }, []);
-
   const checkout = async (result: CheckoutResult) => {
     setLoading(true);
-    await ShopAPI.checkoutResult(result);
+    //await ShopAPI.checkoutResult(result);
     setLoading(false);
   };
 
-  const setUserData = async (user: User) => {
+  const setUserData = (user: User) => {
     setLoading(true);
-    await ShopAPI.updateUserDetails(user);
     setUser(user);
+    console.log(user);
     setLoading(false);
   };
 
   const setUserPhoto = async (photo: string) => {
     setLoading(true);
-    await ShopAPI.setUserPicture({ picture: photo });
+    //await ShopAPI.setUserPicture({ picture: photo });
     setPhoto(photo);
     setLoading(false);
   };

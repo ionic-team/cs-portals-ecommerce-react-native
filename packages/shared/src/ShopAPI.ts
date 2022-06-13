@@ -1,6 +1,14 @@
 import { Product } from "./models/Product";
 import { User } from "./models/User";
 
+export interface CheckoutResult {
+  result: "success" | "cancel" | "failure";
+}
+
+export interface UserPicture {
+  picture: string;
+}
+
 export class ShopAPI {
   static getProducts(): Product[] {
     const res = require("./../assets/data.json");

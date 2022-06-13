@@ -1,7 +1,8 @@
 import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { DataProvider } from "./shared/DataProvider";
+import { User, Cart, defaultUser } from "@portals-ecommerce/shared";
+
 import AddressPage from "./address/AddressPage";
 import DebugPage from "./debug/DebugPage";
 import UserDetailPage from "./user/UserDetailPage";
@@ -27,17 +28,27 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import { useEffect } from "react";
+import { useData } from "./shared/useData";
 
 setupIonicReact();
 
 export interface AppContext {
   startingRoute: string;
+  user?: User;
+  cart?: Cart;
 }
 
 const App: React.FC<{ context: AppContext }> = ({
-  context: { startingRoute },
-}) => (
-  <DataProvider>
+  context: { startingRoute, user, cart },
+}) => {
+  const { setUserData } = useData();
+
+  useEffect(() => {
+    user && setUserData(user);
+  }, []);
+
+  return (
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
@@ -58,7 +69,7 @@ const App: React.FC<{ context: AppContext }> = ({
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
-  </DataProvider>
-);
+  );
+};
 
 export default App;
