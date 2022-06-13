@@ -2,15 +2,8 @@ import { useContext } from "react";
 import { DataContext } from "./DataProvider";
 
 export const useData = () => {
-  const {
-    loading,
-    user,
-    setUserData,
-    cart,
-    checkout,
-    userPhoto,
-    setUserPhoto,
-  } = useContext(DataContext);
+  const { loading, user, cart, checkout, setUserData, setStateData } =
+    useContext(DataContext);
 
   if (DataContext === undefined)
     throw new Error("useData must be used within a DataProvider");
@@ -18,10 +11,9 @@ export const useData = () => {
   return {
     loading,
     user,
-    setUserData,
     cart,
     checkout,
-    userPhoto,
-    setUserPhoto,
+    setUserData,
+    setStateData,
   };
 };

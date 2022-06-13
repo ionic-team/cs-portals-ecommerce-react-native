@@ -42,11 +42,11 @@ export interface AppContext {
 const App: React.FC<{ context: AppContext }> = ({
   context: { startingRoute, user, cart },
 }) => {
-  const { setUserData } = useData();
+  const { setStateData } = useData();
 
   useEffect(() => {
-    user && setUserData(user);
-  }, []);
+    setStateData({ user, cart });
+  }, [setStateData, user, cart]);
 
   return (
     <IonApp>

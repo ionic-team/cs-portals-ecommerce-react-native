@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useCallback, useState } from "react";
 import {
   Cart,
   defaultCart,
@@ -7,55 +7,64 @@ import {
   CheckoutResult,
 } from "@portals-ecommerce/shared";
 
+/**
+ * REMIX!
+ *
+ * This provider needs to do different things:
+ *
+ * 1. get/set user
+ * 2. get cart
+ * 3. Update profile picture
+ * 4. Checkout
+ * 5. Set initial data
+ *
+ * */
+
 export const DataContext = createContext<{
   loading: boolean;
-  user: User;
-  setUserData: (user: User) => void;
-  cart: Cart;
+  cart: Cart | undefined;
   checkout: (result: CheckoutResult) => Promise<void>;
-  userPhoto?: string;
-  setUserPhoto: (photo: string) => Promise<void>;
+  user: User | undefined;
+  setUserData: (user: User) => void;
+  setStateData: (opts: { user?: User; cart?: Cart }) => void;
 }>({
   loading: false,
-  user: defaultUser,
-  setUserData: () => {
-    throw new Error("Method not implemented");
-  },
-  cart: defaultCart,
+  cart: undefined,
+  user: undefined,
   checkout: () => {
     throw new Error("Method not implemented");
   },
-  userPhoto: undefined,
-  setUserPhoto: () => {
+  setUserData: () => {
+    throw new Error("Method not implemented");
+  },
+  setStateData: () => {
     throw new Error("Method not implemented");
   },
 });
 
 export const DataProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [user, setUser] = useState<User>(defaultUser);
-  const [cart, setCart] = useState<Cart>(defaultCart);
-  const [photo, setPhoto] = useState<string>(
-    require("@portals-ecommerce/shared/assets/images/default-profile.png")
-  );
+  const [user, setUser] = useState<User>();
+  const [cart, setCart] = useState<Cart>();
+
+  const setStateData = useCallback((opts: { user?: User; cart?: Cart }) => {
+    setLoading(true);
+    const { cart, user } = opts;
+    user && setUser(user);
+    cart && setCart(cart);
+    setLoading(false);
+  }, []);
 
   const checkout = async (result: CheckoutResult) => {
     setLoading(true);
-    //await ShopAPI.checkoutResult(result);
+    // Publish message to Portals
     setLoading(false);
   };
 
   const setUserData = (user: User) => {
     setLoading(true);
     setUser(user);
-    console.log(user);
-    setLoading(false);
-  };
-
-  const setUserPhoto = async (photo: string) => {
-    setLoading(true);
-    //await ShopAPI.setUserPicture({ picture: photo });
-    setPhoto(photo);
+    // Publish message to Portals
     setLoading(false);
   };
 
@@ -64,11 +73,10 @@ export const DataProvider: React.FC = ({ children }) => {
       value={{
         loading,
         user,
-        setUserData,
         cart,
         checkout,
-        userPhoto: photo,
-        setUserPhoto,
+        setUserData,
+        setStateData,
       }}
     >
       {children}

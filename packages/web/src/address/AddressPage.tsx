@@ -67,7 +67,7 @@ const AddressPage: React.FC = () => {
   };
 
   const save = async (data: Address) => {
-    let addresses = user.addresses;
+    let addresses = user!.addresses;
     let idx = id ? parseInt(id) : -1;
 
     if (data.preferred) {
@@ -80,7 +80,7 @@ const AddressPage: React.FC = () => {
       idx = (Math.max(...addresses.map((x) => x.id!)) || 0) + 1;
     }
     addresses.push({ ...data, id: idx });
-    await setUserData({ ...user, addresses });
+    setUserData({ ...user!, addresses });
     reset();
     router.canGoBack() && router.goBack();
   };
@@ -101,7 +101,7 @@ const AddressPage: React.FC = () => {
             <IonLabel position="fixed">Full Name</IonLabel>
             <IonInput
               disabled
-              value={`${user.firstName} ${user.lastName}`.trim()}
+              value={`${user?.firstName} ${user?.lastName}`.trim()}
             ></IonInput>
           </IonItem>
           <IonItem lines="full">

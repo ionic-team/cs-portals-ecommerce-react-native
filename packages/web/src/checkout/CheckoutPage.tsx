@@ -58,7 +58,7 @@ const CheckoutPage: React.FC = () => {
       <IonContent className="ion-padding">
         <IonList lines="none">
           <IonListHeader>Delivery</IonListHeader>
-          {user.addresses.map((address) => (
+          {user?.addresses.map((address) => (
             <AddressItem
               key={address.id}
               address={address}
@@ -77,7 +77,7 @@ const CheckoutPage: React.FC = () => {
         </IonButton>
         <IonList lines="none">
           <IonListHeader>Payment</IonListHeader>
-          {user.creditCards.map((card) => (
+          {user?.creditCards.map((card) => (
             <PaymentItem
               key={card.id}
               creditCard={card}
@@ -97,7 +97,7 @@ const CheckoutPage: React.FC = () => {
         <IonList lines="none">
           <IonListHeader>Review Total</IonListHeader>
           <IonItem>
-            <IonLabel>${cart.subTotal} + Tax</IonLabel>
+            <IonLabel>${cart?.subTotal} + Tax</IonLabel>
           </IonItem>
         </IonList>
         <IonButton

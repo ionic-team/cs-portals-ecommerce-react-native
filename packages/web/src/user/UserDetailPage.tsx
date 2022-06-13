@@ -32,7 +32,7 @@ interface UserDetail {
 }
 
 const UserDetailPage: React.FC = () => {
-  const { user, setUserData, userPhoto, setUserPhoto } = useData();
+  const { user, setUserData } = useData();
   const { getValues, control, reset } = useForm<UserDetail>({
     mode: "onChange",
   });
@@ -42,7 +42,7 @@ const UserDetailPage: React.FC = () => {
     <ImageCropper
       image={cameraImage}
       onCropComplete={async (dataImageUrl: string) => {
-        await setUserPhoto(dataImageUrl);
+        //await setUserPhoto(dataImageUrl);
         setCameraImage("");
         hideCropModal();
       }}
@@ -51,11 +51,12 @@ const UserDetailPage: React.FC = () => {
   );
 
   useEffect(() => {
-    reset({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-    });
+    user &&
+      reset({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      });
   }, [user, reset]);
 
   const handlePictureClick = async () => {
@@ -71,7 +72,7 @@ const UserDetailPage: React.FC = () => {
 
   const updateUserData = async () => {
     const values = getValues();
-    await setUserData({ ...user, ...values });
+    await setUserData({ ...user!, ...values });
   };
 
   return (
@@ -83,7 +84,7 @@ const UserDetailPage: React.FC = () => {
       </IonHeader>
       <IonContent>
         <div className="user-image" onClick={handlePictureClick}>
-          <img src={userPhoto} alt={`${user.firstName} ${user.lastName}`} />
+          <img src={""} alt={`${user?.firstName} ${user?.lastName}`} />
           <IonIcon icon={add} />
         </div>
         <div className="user-info">
@@ -143,7 +144,7 @@ const UserDetailPage: React.FC = () => {
         <div className="list-section">
           <IonList lines="none">
             <IonListHeader>Addresses</IonListHeader>
-            {user.addresses.map((address) => (
+            {user?.addresses.map((address) => (
               <AddressItem
                 key={address.id}
                 address={address}
@@ -163,7 +164,7 @@ const UserDetailPage: React.FC = () => {
         <div className="list-section">
           <h4>Payment Methods</h4>
           <IonList lines="none">
-            {user.creditCards.map((creditCard) => (
+            {user?.creditCards.map((creditCard) => (
               <PaymentItem
                 key={creditCard.id}
                 creditCard={creditCard}

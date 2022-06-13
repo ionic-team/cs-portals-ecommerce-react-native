@@ -57,7 +57,7 @@ const PaymentPage: React.FC = () => {
   }, [id, user, reset]);
 
   const save = async (data: CreditCard) => {
-    let creditCards = user.creditCards;
+    let creditCards = user!.creditCards;
     let idx = id ? parseInt(id) : -1;
 
     if (!data.company) data.company = "Visa";
@@ -72,7 +72,7 @@ const PaymentPage: React.FC = () => {
       idx = (Math.max(...creditCards.map((x) => x.id!)) || 0) + 1;
     }
     creditCards.push({ ...data, id: idx });
-    await setUserData({ ...user, creditCards });
+    await setUserData({ ...user!, creditCards });
     reset();
     router.canGoBack() && router.goBack();
   };
