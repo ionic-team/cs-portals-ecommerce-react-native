@@ -50,6 +50,7 @@ export const DataProvider: React.FC = ({ children }) => {
   const setStateData = useCallback((opts: { user?: User; cart?: Cart }) => {
     setLoading(true);
     const { cart, user } = opts;
+    console.log(user);
     user && setUser(user);
     cart && setCart(cart);
     setLoading(false);

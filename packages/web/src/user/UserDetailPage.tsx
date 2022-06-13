@@ -42,7 +42,7 @@ const UserDetailPage: React.FC = () => {
     <ImageCropper
       image={cameraImage}
       onCropComplete={async (dataImageUrl: string) => {
-        //await setUserPhoto(dataImageUrl);
+        setUserData({ ...user!, image: dataImageUrl });
         setCameraImage("");
         hideCropModal();
       }}
@@ -72,7 +72,7 @@ const UserDetailPage: React.FC = () => {
 
   const updateUserData = async () => {
     const values = getValues();
-    await setUserData({ ...user!, ...values });
+    setUserData({ ...user!, ...values });
   };
 
   return (
@@ -84,7 +84,7 @@ const UserDetailPage: React.FC = () => {
       </IonHeader>
       <IonContent>
         <div className="user-image" onClick={handlePictureClick}>
-          <img src={""} alt={`${user?.firstName} ${user?.lastName}`} />
+          <img src={user?.image} alt={`${user?.firstName} ${user?.lastName}`} />
           <IonIcon icon={add} />
         </div>
         <div className="user-info">

@@ -9,7 +9,11 @@ import { DataProvider } from "./shared/DataProvider";
 
 if (!Capacitor.isNativePlatform()) {
   (window as any).portalInitialContext = {
-    value: { startingRoute: "/", user: ShopAPI.getUser() },
+    value: {
+      startingRoute: "/",
+      user: ShopAPI.getUser(),
+      cart: ShopAPI.getStubCart(),
+    },
   };
 }
 
