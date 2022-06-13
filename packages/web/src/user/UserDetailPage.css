@@ -1,7 +1,3 @@
-.ios #user-detail-page ion-content {
-  /* Compensate for the tab bar */
-  --offset-bottom: -85px !important;
-}
 
 .md #user-detail-page ion-toolbar {
   --background: var(--ion-color-primary);

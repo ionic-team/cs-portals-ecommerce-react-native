@@ -7,6 +7,7 @@ Eric Notes:
 2. Convert the entire shop API to pub/sub. Yay!
 3. Document registering/adding Portals OUTSIDE of the React rendering lifecycle.
 4. Step to add Live Updates package to Podfile
+5. Don't forget about Cap Camera!!!
 RN start is metro
 
 ```
