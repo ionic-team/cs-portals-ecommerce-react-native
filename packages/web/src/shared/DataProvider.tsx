@@ -1,24 +1,6 @@
 import React, { createContext, useCallback, useState } from "react";
-import {
-  Cart,
-  defaultCart,
-  defaultUser,
-  User,
-  CheckoutResult,
-} from "@portals-ecommerce/shared";
-
-/**
- * REMIX!
- *
- * This provider needs to do different things:
- *
- * 1. get/set user
- * 2. get cart
- * 3. Update profile picture
- * 4. Checkout
- * 5. Set initial data
- *
- * */
+import { Cart, User, CheckoutResult } from "@portals-ecommerce/shared";
+import Portals from "@ionic/portals";
 
 export const DataContext = createContext<{
   loading: boolean;
@@ -50,7 +32,6 @@ export const DataProvider: React.FC = ({ children }) => {
   const setStateData = useCallback((opts: { user?: User; cart?: Cart }) => {
     setLoading(true);
     const { cart, user } = opts;
-    console.log(user);
     user && setUser(user);
     cart && setCart(cart);
     setLoading(false);
@@ -65,7 +46,7 @@ export const DataProvider: React.FC = ({ children }) => {
   const setUserData = (user: User) => {
     setLoading(true);
     setUser(user);
-    // Publish message to Portals
+    Portals.publish<User>({ topic: "user:updated", data: user });
     setLoading(false);
   };
 
