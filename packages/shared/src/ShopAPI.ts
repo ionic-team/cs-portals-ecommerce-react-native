@@ -20,7 +20,7 @@ export class ShopAPI {
   static getUser(): User {
     const res = require("./../assets/data.json");
     const { user } = res;
-    const image = require("./../assets/images/jt-avatar.png").toString();
+    const { image } = require("./../assets/imageEncoded.json");
     return { ...user, image };
   }
 

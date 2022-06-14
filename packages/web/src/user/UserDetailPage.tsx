@@ -78,7 +78,7 @@ const UserDetailPage: React.FC = () => {
   return (
     <IonPage id="user-detail-page">
       <IonHeader>
-        <IonToolbar color="white">
+        <IonToolbar>
           <IonTitle>Profile</IonTitle>
         </IonToolbar>
       </IonHeader>

@@ -48,7 +48,7 @@ const CheckoutPage: React.FC = () => {
   return (
     <IonPage id="checkout-page">
       <IonHeader>
-        <IonToolbar color="white">
+        <IonToolbar>
           <IonButtons slot="start">
             <IonButton onClick={() => handleDismiss()}>Cancel</IonButton>
           </IonButtons>
