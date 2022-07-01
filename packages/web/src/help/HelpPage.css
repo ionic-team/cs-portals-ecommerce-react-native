@@ -1,0 +1,14 @@
+.ios #help-page {
+  margin-top: 100px;
+}
+
+#help-page .help-link {
+  text-decoration: none;
+  font-size: 1em;
+}
+
+#help-page .help-link ion-icon {
+  vertical-align: middle;
+  margin-right: 0.5em;
+  font-size: 1em;
+}

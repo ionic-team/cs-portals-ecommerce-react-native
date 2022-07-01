@@ -1,0 +1,13 @@
+ion-modal.exp-date {
+  --width: 290px;
+  --height: 250px;
+  --border-radius: 8px;
+}
+
+ion-modal.exp-date ion-datetime {
+  height: auto;
+  width: auto;
+
+  max-width: 382px;
+  height: 250px;
+}
