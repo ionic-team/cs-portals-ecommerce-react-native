@@ -1347,10 +1347,10 @@
     ionicons "^6.0.0"
     tslib "^2.1.0"
 
-"@ionic/portals-react-native@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@ionic/portals-react-native/-/portals-react-native-0.0.5.tgz#f8f6c97d052fa26ad900758f265effa2abd96200"
-  integrity sha512-0l8QHUUzcPg1ZoAwm2EgrExrF6zEW+7KJCjVlb0nQP9/CjWdNucvfYFTVzVUWthE8sYtLcA1OUV1qMIRmgMwTA==
+"@ionic/portals-react-native@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@ionic/portals-react-native/-/portals-react-native-0.0.6.tgz#81c9ee647ae6e96dbf5440a9041c767d561c896d"
+  integrity sha512-tSchzlM8u7WHS+RKdJ+lHd38Vwl4njd27aTHbairaiD0IJb0Z976JcAYYnV6RgwShQeiu/uwgEU3i2N0KMgjVQ==
 
 "@ionic/portals@^0.5.0":
   version "0.5.0"
