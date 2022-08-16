@@ -42,9 +42,15 @@ export const CheckoutScreen: React.FC = () => {
 
   return (
     <PortalView
-      name="shopwebapp"
+      portal={{
+        name: 'shopwebapp',
+        initialContext: {
+          startingRoute: '/checkout',
+          user,
+          cart,
+        },
+      }}
       style={[Styles.flex]}
-      initialContext={{ startingRoute: '/checkout', user, cart }}
     />
   );
 };

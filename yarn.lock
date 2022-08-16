@@ -1347,10 +1347,10 @@
     ionicons "^6.0.0"
     tslib "^2.1.0"
 
-"@ionic/portals-react-native@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@ionic/portals-react-native/-/portals-react-native-0.0.6.tgz#81c9ee647ae6e96dbf5440a9041c767d561c896d"
-  integrity sha512-tSchzlM8u7WHS+RKdJ+lHd38Vwl4njd27aTHbairaiD0IJb0Z976JcAYYnV6RgwShQeiu/uwgEU3i2N0KMgjVQ==
+"@ionic/portals-react-native@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@ionic/portals-react-native/-/portals-react-native-0.1.0.tgz#e6bf1a7d70664db0de859f9044f847602e330b93"
+  integrity sha512-d3wqwGUbWYAkAW7Qiaa+2atC17hQJcw8n02pHUhfVOSfhbP30U8PKaeAwhUTWkz4Vrxl3oONLmXRo5vebe/SVg==
 
 "@ionic/portals@^0.5.0":
   version "0.5.0"
@@ -2771,10 +2771,19 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16", "@types/react@^16.14.3", "@types/react@^17":
+"@types/react@*", "@types/react@^17":
   version "17.0.44"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.44.tgz#c3714bd34dd551ab20b8015d9d0dbec812a51ec7"
   integrity sha512-Ye0nlw09GeMp2Suh8qoOv0odfgCoowfM/9MG6WeRD60Gq9wS90bdkdRtYbRkNhXOpG4H+YXGvj4wOWhAC0LJ1g==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^16", "@types/react@^16.14.3":
+  version "16.14.30"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.30.tgz#a1d83f73f4326798d65fe6b58cb4caeacee47623"
+  integrity sha512-tG+xGtDDSuIl1l63mN0LnaROAc99knkYyN4YTheE80iPzYvSy0U8LVie+OBZkrgjVrpkQV6bMCkSphPBnVNk6g==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"

@@ -24,9 +24,14 @@ export const ProfileScreen: React.FC = () => {
 
   return (
     <PortalView
-      name="shopwebapp"
+      portal={{
+        name: 'shopwebapp',
+        initialContext: {
+          startingRoute: '/user',
+          user,
+        },
+      }}
       style={[Styles.flex]}
-      initialContext={{ startingRoute: '/user', user }}
     />
   );
 };

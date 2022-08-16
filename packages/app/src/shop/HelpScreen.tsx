@@ -5,9 +5,13 @@ import { Styles } from '../shared';
 export const HelpScreen: React.FC = () => {
   return (
     <PortalView
-      name="shopwebapp"
+      portal={{
+        name: 'shopwebapp',
+        initialContext: {
+          startingRoute: '/help',
+        },
+      }}
       style={[Styles.flex]}
-      initialContext={{ startingRoute: '/help' }}
     />
   );
 };

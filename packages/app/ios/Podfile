@@ -31,11 +31,25 @@ target 'PortalsEcommerce' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  #use_flipper!()
-  use_frameworks!
+  use_flipper!()
 
   post_install do |installer|
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+  end
+
+  dynamic_frameworks = ['Capacitor', 'CapacitorCordova']
+
+  pre_install do |installer|
+    installer.pod_targets.each do |pod|
+      if dynamic_frameworks.include?(pod.name)
+        def pod.static_framework?
+          false
+        end
+        def pod.build_type
+          Pod::BuildType.dynamic_framework
+        end
+      end
+    end
   end
 end
