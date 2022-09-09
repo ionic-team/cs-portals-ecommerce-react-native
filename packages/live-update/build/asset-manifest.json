@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f68650bf.css",
+    "main.js": "/static/js/main.14da10cb.js",
+    "static/js/630.af8aea47.chunk.js": "/static/js/630.af8aea47.chunk.js",
+    "static/js/858.9b15ce5c.chunk.js": "/static/js/858.9b15ce5c.chunk.js",
+    "static/js/372.969925fa.chunk.js": "/static/js/372.969925fa.chunk.js",
+    "static/js/856.12a41086.chunk.js": "/static/js/856.12a41086.chunk.js",
+    "static/js/851.272bafa6.chunk.js": "/static/js/851.272bafa6.chunk.js",
+    "static/js/22.d7dc2883.chunk.js": "/static/js/22.d7dc2883.chunk.js",
+    "static/js/272.c7bb9386.chunk.js": "/static/js/272.c7bb9386.chunk.js",
+    "static/js/841.eed24f39.chunk.js": "/static/js/841.eed24f39.chunk.js",
+    "static/js/186.dcd24c24.chunk.js": "/static/js/186.dcd24c24.chunk.js",
+    "static/js/377.2b6749d2.chunk.js": "/static/js/377.2b6749d2.chunk.js",
+    "static/media/portals-tote.png": "/static/media/portals-tote.77fdbab6e4da814b52ac.png",
+    "static/media/capacitor-mask.png": "/static/media/capacitor-mask.95afa57f824f3eb58a5d.png",
+    "static/media/capacitor-hat.png": "/static/media/capacitor-hat.ae10a8d137fc60cdaf9c.png",
+    "service-worker.js": "/service-worker.js",
+    "index.html": "/index.html",
+    "main.f68650bf.css.map": "/static/css/main.f68650bf.css.map",
+    "main.14da10cb.js.map": "/static/js/main.14da10cb.js.map",
+    "630.af8aea47.chunk.js.map": "/static/js/630.af8aea47.chunk.js.map",
+    "858.9b15ce5c.chunk.js.map": "/static/js/858.9b15ce5c.chunk.js.map",
+    "372.969925fa.chunk.js.map": "/static/js/372.969925fa.chunk.js.map",
+    "856.12a41086.chunk.js.map": "/static/js/856.12a41086.chunk.js.map",
+    "851.272bafa6.chunk.js.map": "/static/js/851.272bafa6.chunk.js.map",
+    "22.d7dc2883.chunk.js.map": "/static/js/22.d7dc2883.chunk.js.map",
+    "272.c7bb9386.chunk.js.map": "/static/js/272.c7bb9386.chunk.js.map",
+    "841.eed24f39.chunk.js.map": "/static/js/841.eed24f39.chunk.js.map",
+    "186.dcd24c24.chunk.js.map": "/static/js/186.dcd24c24.chunk.js.map",
+    "377.2b6749d2.chunk.js.map": "/static/js/377.2b6749d2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f68650bf.css",
+    "static/js/main.14da10cb.js"
+  ]
+}

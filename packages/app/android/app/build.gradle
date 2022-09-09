@@ -320,7 +320,14 @@ task copyWebAssets(type: Copy) {
     into layout.projectDirectory.dir("src/main/assets/portals/shopwebapp")
 }
 
+task copyInitialLiveUpdatePortalAssets(type: Copy) {
+    def webBuildFolder = '../../../live-update/build'
+    from webBuildFolder
+    into layout.projectDirectory.dir("src/main/assets/portals/featuredproductsapp")
+}
+
 preBuild.dependsOn(copyWebAssets)
+preBuild.dependsOn(copyInitialLiveUpdatePortalAssets)
 
 def isNewArchitectureEnabled() {
     // To opt-in for the New Architecture, you can either:

@@ -2,13 +2,15 @@
 
 An e-commerce demo application using Ionic Portals for React Native.
 
-This project highlights the use of web resources to populate Portals within a React Native application, communication between React Native and web resources, and sharing code between web resources and React Native.
+This project highlights the use of web resources to populate Portals within a React Native application, communication between React Native and web resources, sharing code between web resources and React Native, and using Live Updates to update the contents of a Portal.
 
 To do so, this project is constructed as a monorepo using Yarn Workspaces containing the following packages:
 
 * `@portals-ecommerce/app` - This package is a React Native application.
 * `@portals-ecommerce/web` - This package is an Ionic React application.
 * `@portals-ecommerce/shared` - This package contains code and assets shared between the other packages.
+
+Each project within the monorepo can be found within the `packages` directory. The `packages/live-update` directory serves as the base version of web resources to be replaced using Live Updates but is not a buildable project within the monorepo. 
 
 > **Note:** This document presumes the reader is familiar building and running React Native applications.
 
@@ -59,7 +61,7 @@ The following diagram represents which application views written purely with Rea
 
 ### Registering and Adding Portals
 
-The React Native application registers and adds its Portal within `packages/app/App.tsx`:
+The React Native application registers and adds Portals within `packages/app/App.tsx`:
 
 ```typescript
 register(PORTALS_API_KEY);
@@ -75,7 +77,7 @@ addPortal({
 
 ### Displaying Portals
 
-This demo application uses a single Portal. Each `<PortalView />` component passes a different route as part of its `initialContext` to display a different portion of the web application:
+This demo application contains two Portals: `shopwebapp` and `featuredproductsapp`. Each `<PortalView />` component using the `shopwebapp` Portal passes a different route as part of its `initialContext` to display a different portion of the web application:
 
 ```JSX
 // packages/app/src/ProfileScreen.tsx
@@ -149,6 +151,43 @@ const subscribeToCheckout = useCallback(async () => {
 }, [clearCart, navigation]);
 ```
 
+### Live Updates
+
+The `featuredproductsapp` Portal is displayed within the React Native application in an interstitial fashion, as part of the shopping experience:
+
+```TSX
+// packages/app/src/shop/ShopScreen.tsx
+
+/* Code augmented for brevity */
+<PortalView
+  portal={{ name: 'featuredproductsapp' }}
+  style={{ height: 400, width: '100%' }}
+/>
+```
+
+Pressing refresh icon on the top-right of the Portal pulls down the latest Live Update for `featuredproductsapp`.
+
+The code for this interstitial experience can be found within the following repo: [https://github.com/ionic-team/cs-portals-ecommerce-featured-products/](https://github.com/ionic-team/cs-portals-ecommerce-featured-products/).
+
+Live Updates are associated with this Portal as the `liveUpdate` property supplied to `addPortal()`:
+
+```Typescript
+// packages/app/App.tsx
+addPortal({
+  name: 'featuredproductsapp',
+  startDir: 'portals/featuredproductsapp',
+  liveUpdate: {
+    appId: LiveUpdate.appId,
+    channel: LiveUpdate.channel,
+    syncOnAdd: false,
+  },
+});
+```
+
+> **Note:** Ionic recommends setting `syncOnAdd` to `true`. This will automatically check for updates and apply them if found.
+
+This demo application "manually" applies a Live Update by unmounting and remounting the `<FeaturedProductPortal />` component. This behavior has been added for demonstration purposes, and Ionic does not recommend this approach for production applications.
+
 ## Copying Web Resources
 
 The React Native application copies the contents of `packages/web/build` as part of its build process for both iOS and Android. This directory contains distribution files for the web application. 
@@ -156,3 +195,5 @@ The React Native application copies the contents of `packages/web/build` as part
 For Android, the build task to copy web assets can be found in `packages/app/android/app/build.gradle`. The task is named `copyWebAssets`.
 
 For iOS, the build task can be found within the "Build Phases" of the "PortalsEcommerce" target. The task is named `Copy Web Assets`. 
+
+Additional tasks exist to copy the contents of `packages/live-update/build` as part of the build process for both iOS and Android.

@@ -6,3 +6,4 @@ export * from './providers/useData';
 export * from './providers/CartReducer';
 export * from './providers/ProductProvider';
 export * from './providers/useProduct';
+export * from './LiveUpdate';
