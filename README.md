@@ -16,7 +16,7 @@ Each project within the monorepo can be found within the `packages` directory. T
 
 ## Portals Registration Key
 
-To try this demo, you are required to input a Portals registration key. You may get a key by going to ionic.io/register-portals. Follow the instructions below to add your key to the React Native demo application.
+To try this demo, you are required to input a Portals registration key. You may get a key by going to [ionic.io/register-portals](https://ionic.io/register-portals). Follow the instructions below to add your key to the React Native demo application.
 
 Create a `.env` file within the `packages/app` folder containing the following contents:
 
@@ -184,9 +184,11 @@ addPortal({
 });
 ```
 
-> **Note:** Ionic recommends setting `syncOnAdd` to `true`. This will automatically check for updates and apply them if found.
+Note the `syncOnAdd` property above. When this property is set to `true` (or omitted), a sync operation will occur the first time a Portal is created to check if an update is available, If so, the assets are downloaded to the device and setup with the Portal and will be applied the next time the Portal is loaded. 
 
-This demo application "manually" applies a Live Update by unmounting and remounting the `<FeaturedProductPortal />` component. This behavior has been added for demonstration purposes, and Ionic does not recommend this approach for production applications.
+This demo application "manually" applies a Live Update by unmounting and remounting the `<FeaturedProductPortal />` component. This behavior has been added for demonstration purposes.
+
+Refer to Portals' [Getting Started with Live Updates](https://ionic.io/docs/portals/getting-started/live-updates) for additional information on the Live Update API.
 
 ## Copying Web Resources
 
