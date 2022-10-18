@@ -1,4 +1,9 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from 'react';
 import { ImageSourcePropType } from 'react-native';
 import { Product, ShopAPI } from '@portals-ecommerce/shared';
 
@@ -16,7 +21,7 @@ export const ProductContext = createContext<{
   },
 });
 
-export const ProductProvider: React.FC = ({ children }) => {
+export const ProductProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [mustHaves, setMustHaves] = useState<Product[]>([]);
 
