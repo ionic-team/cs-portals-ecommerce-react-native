@@ -1,5 +1,10 @@
-/* eslint-disable no-spaced-func */
-import React, { createContext, useEffect, useReducer, useState } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 import {
   Cart,
   User,
@@ -37,7 +42,7 @@ export const DataContext = createContext<{
   },
 });
 
-export const DataProvider: React.FC = ({ children }) => {
+export const DataProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User>();
   const [cart, dispatch] = useReducer(reducer, defaultCart);
 

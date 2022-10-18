@@ -1,4 +1,4 @@
-/* eslint-disable curly */
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
