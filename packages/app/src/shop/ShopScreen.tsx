@@ -47,6 +47,12 @@ export const ShopScreen: React.FC = () => {
   const topic = 'live-update:sync';
   const [showPortal, setShowPortal] = useState<boolean>(true);
 
+  /**
+   * WARNING!
+   *
+   * Ionic recommends applying Live Updates in the default background mode.
+   * Manual syncing is implemented solely for ** DEMO PURPOSES **.
+   */
   const subscribeToRefreshLiveUpdate = useCallback(async () => {
     refreshLUSubRef.current = await subscribe(topic, async () => {
       try {

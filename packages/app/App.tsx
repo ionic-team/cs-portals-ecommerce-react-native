@@ -7,30 +7,11 @@ import {
   useColorScheme,
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { addPortal, register } from '@ionic/portals-react-native';
-import { PORTALS_API_KEY } from '@env';
-
-import { DataProvider, LiveUpdate, ProductProvider } from './src/shared';
+import { DataProvider, ProductProvider } from './src/shared';
 import TabsContainer from './src/Tabs';
+import initializePortals from './src/initializePortals';
 
-register(PORTALS_API_KEY);
-
-addPortal({
-  name: 'shopwebapp',
-  startDir: 'portals/shopwebapp',
-  initialContext: { startingRoute: '/help' },
-  androidPlugins: ['com.capacitorjs.plugins.camera.CameraPlugin'],
-});
-
-addPortal({
-  name: 'featuredproductsapp',
-  startDir: 'portals/featuredproductsapp',
-  liveUpdate: {
-    appId: LiveUpdate.appId,
-    channel: LiveUpdate.channel,
-    syncOnAdd: false,
-  },
-});
+initializePortals();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';

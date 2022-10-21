@@ -6,11 +6,11 @@ This project highlights the use of web resources to populate Portals within a Re
 
 To do so, this project is constructed as a monorepo using Yarn Workspaces containing the following packages:
 
-* `@portals-ecommerce/app` - This package is a React Native application.
-* `@portals-ecommerce/web` - This package is an Ionic React application.
-* `@portals-ecommerce/shared` - This package contains code and assets shared between the other packages.
+- `@portals-ecommerce/app` - This package is a React Native application.
+- `@portals-ecommerce/web` - This package is an Ionic React application.
+- `@portals-ecommerce/shared` - This package contains code and assets shared between the other packages.
 
-Each project within the monorepo can be found within the `packages` directory. The `packages/live-update` directory serves as the base version of web resources to be replaced using Live Updates but is not a buildable project within the monorepo. 
+Each project within the monorepo can be found within the `packages` directory. The `packages/live-update` directory serves as the base version of web resources to be replaced using Live Updates but is not a buildable project within the monorepo.
 
 > **Note:** This document presumes the reader is familiar building and running React Native applications.
 
@@ -19,7 +19,6 @@ Each project within the monorepo can be found within the `packages` directory. T
 To try this demo, you are required to input a Portals registration key. You may get a key by going to [ionic.io/register-portals](https://ionic.io/register-portals). Follow the instructions below to add your key to the React Native demo application.
 
 Create a `.env` file within the `packages/app` folder containing the following contents:
-
 
 ```bash
 PORTALS_API_KEY=YOUR_KEY_HERE
@@ -61,16 +60,41 @@ The following diagram represents which application views written purely with Rea
 
 ### Registering and Adding Portals
 
-The React Native application registers and adds Portals within `packages/app/App.tsx`:
+The React Native application defines a method to register and adds Portals within `packages/app/src/initializePortals.ts`:
 
 ```typescript
-register(PORTALS_API_KEY);
-addPortal({
-  name: 'shopwebapp',
-  startDir: 'portals/shopwebapp',
-  initialContext: { startingRoute: '/help' },
-  androidPlugins: ['com.capacitorjs.plugins.camera.CameraPlugin'],
-});
+import { addPortals, Portal, register } from "@ionic/portals-react-native";
+import { PORTALS_API_KEY } from "@env";
+import { LiveUpdate } from "./shared";
+
+const shopPortal: Portal = {
+  name: "shopwebapp",
+  startDir: "portals/shopwebapp",
+  initialContext: { startingRoute: "/help" },
+  androidPlugins: ["com.capacitorjs.plugins.camera.CameraPlugin"],
+};
+
+/* Code omitted for brevity */
+
+const initializePortals = async () => {
+  await register(PORTALS_API_KEY);
+  await addPortals([shopPortal, featuredProductsPortal]);
+};
+export default initializePortals;
+```
+
+This method is imported and called in `packages/app/src/App.tsx`:
+
+```typescript
+/* Additional imports omitted for brevity */
+import initializePortals from "./src/initializePortals";
+
+initializePortals();
+
+const App = () => {
+  /* Code omitted for brevity */
+};
+export default App;
 ```
 
 > **Note:** The code above runs _outside_ of any React component definitions. It is not recommended to register and add Portals within the React lifecycle.
@@ -95,6 +119,7 @@ The web application intercepts the `startingRoute` and will route to the appropr
   {startingRoute !== "/" ? <Redirect to={startingRoute} /> : <DebugPage />}
 </Route>
 ```
+
 > **Note:** This demo application contains a "debug page" used when developing the web experience.
 
 ### Communication Between Layers
@@ -184,18 +209,20 @@ addPortal({
 });
 ```
 
-Note the `syncOnAdd` property above. When this property is set to `true` (or omitted), a sync operation will occur the first time a Portal is created to check if an update is available, If so, the assets are downloaded to the device and setup with the Portal and will be applied the next time the Portal is loaded. 
+Note the `syncOnAdd` property above. When this property is set to `true` (or omitted), a sync operation will occur the first time a Portal is created to check if an update is available, If so, the assets are downloaded to the device and setup with the Portal and will be applied the next time the Portal is loaded.
 
-This demo application "manually" applies a Live Update by unmounting and remounting the `<FeaturedProductPortal />` component. This behavior has been added for demonstration purposes.
+This demo application "manually" applies a Live Update by unmounting and remounting the `<FeaturedProductPortal />` component.
+
+> **Note:** Ionic recommends applying Live Updates using the default background mode. Manual syncing is implemented solely for **demo purposes**.
 
 Refer to Portals' [Getting Started with Live Updates](https://ionic.io/docs/portals/getting-started/live-updates) for additional information on the Live Update API.
 
 ## Copying Web Resources
 
-The React Native application copies the contents of `packages/web/build` as part of its build process for both iOS and Android. This directory contains distribution files for the web application. 
+The React Native application copies the contents of `packages/web/build` as part of its build process for both iOS and Android. This directory contains distribution files for the web application.
 
 For Android, the build task to copy web assets can be found in `packages/app/android/app/build.gradle`. The task is named `copyWebAssets`.
 
-For iOS, the build task can be found within the "Build Phases" of the "PortalsEcommerce" target. The task is named `Copy Web Assets`. 
+For iOS, the build task can be found within the "Build Phases" of the "PortalsEcommerce" target. The task is named `Copy Web Assets`.
 
 Additional tasks exist to copy the contents of `packages/live-update/build` as part of the build process for both iOS and Android.

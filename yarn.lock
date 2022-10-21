@@ -1515,10 +1515,10 @@
     ionicons "^6.0.0"
     tslib "^2.1.0"
 
-"@ionic/portals-react-native@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ionic/portals-react-native/-/portals-react-native-0.1.0.tgz#e6bf1a7d70664db0de859f9044f847602e330b93"
-  integrity sha512-d3wqwGUbWYAkAW7Qiaa+2atC17hQJcw8n02pHUhfVOSfhbP30U8PKaeAwhUTWkz4Vrxl3oONLmXRo5vebe/SVg==
+"@ionic/portals-react-native@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@ionic/portals-react-native/-/portals-react-native-0.2.0.tgz#2448ab71e3e419e9b59c6b68be59cd1805a582e7"
+  integrity sha512-ClGXbhcSJ3hd5s1Snv7MeuRRvsuESjUYbdT8Hy8NaQ+GGwVl+gNEOqJI36SE0cFe1jB+tRgcD4C97rDHgYu2HA==
 
 "@ionic/portals@^0.5.0":
   version "0.5.0"
