@@ -1,4 +1,9 @@
-import React, { createContext, useCallback, useState } from "react";
+import React, {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useState,
+} from "react";
 import { Cart, User, CheckoutResult, ShopAPI } from "@portals-ecommerce/shared";
 
 export const DataContext = createContext<{
@@ -21,7 +26,9 @@ export const DataContext = createContext<{
   },
 });
 
-export const DataProvider: React.FC = ({ children }) => {
+type DataProviderProps = PropsWithChildren<unknown>;
+
+export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User>();
   const [cart, setCart] = useState<Cart>();
 

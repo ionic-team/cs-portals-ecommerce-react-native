@@ -14,11 +14,12 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import Portals from "@ionic/portals";
-import { Address, CheckoutResult, CreditCard } from "@portals-ecommerce/shared";
+import { Address, CreditCard } from "@portals-ecommerce/shared";
 import { useData } from "../shared/useData";
 import { AddressItem, PaymentItem } from "../shared/components";
 
 import "./CheckoutPage.css";
+import Messages from "../shared/Messages";
 
 const CheckoutPage: React.FC = () => {
   const { cart, user, checkout } = useData();
@@ -36,15 +37,13 @@ const CheckoutPage: React.FC = () => {
   }, [user]);
 
   const handleDismiss = async () => {
-    await Portals.publish({ topic: "modal:dismiss", data: "cancel" });
+    await Portals.publish<Messages>({ topic: "modal:dismiss", data: "cancel" });
   };
 
   const handleOrder = async () => {
     const { result } = checkout();
-    await Portals.publish<CheckoutResult>({
-      topic: "cart:checkout",
-      data: { result },
-    });
+    const data = { result };
+    await Portals.publish<Messages>({ topic: "cart:checkout", data });
   };
 
   return (

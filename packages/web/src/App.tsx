@@ -1,7 +1,7 @@
 import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { User, Cart, defaultUser } from "@portals-ecommerce/shared";
+import { User, Cart } from "@portals-ecommerce/shared";
 
 import AddressPage from "./address/AddressPage";
 import DebugPage from "./debug/DebugPage";
@@ -9,6 +9,9 @@ import UserDetailPage from "./user/UserDetailPage";
 import PaymentPage from "./payment/PaymentPage";
 import CheckoutPage from "./checkout/CheckoutPage";
 import HelpPage from "./help/HelpPage";
+
+import { useEffect } from "react";
+import { useData } from "./shared/useData";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -28,8 +31,6 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { useEffect } from "react";
-import { useData } from "./shared/useData";
 
 setupIonicReact();
 

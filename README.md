@@ -155,11 +155,9 @@ Upon checkout, the web application clears its cart state and publishes a message
 
 ```Typescript
 // packages/web/src/checkout/CheckoutPage.tsx
-const { result } = checkout();
-await Portals.publish<CheckoutResult>({
-  topic: "cart:checkout",
-  data: { result },
-});
+ const { result } = checkout();
+const data = { result };
+await Portals.publish<Messages>({ topic: "cart:checkout", data });
 ```
 
 Finally, the React Native application responds to this message, clearing its cart and dismissing the view:
