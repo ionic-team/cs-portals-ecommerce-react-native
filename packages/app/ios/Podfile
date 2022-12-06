@@ -26,7 +26,7 @@ target 'PortalsEcommerce' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod "CapacitorCamera", "~> 1.3.1"
+  pod "CapacitorCamera", "~> 4.1.4"
 
   target 'PortalsEcommerceTests' do
     inherit! :complete
