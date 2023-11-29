@@ -13,7 +13,7 @@ import initializePortals from './src/initializePortals';
 
 initializePortals();
 
-const App = () => {
+const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
   const [barStyle, setBarStyle] = useState<StatusBarStyle>('light-content');
 

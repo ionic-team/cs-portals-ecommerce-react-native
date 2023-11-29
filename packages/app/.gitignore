@@ -38,11 +38,6 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-# BUCK
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
 
 # fastlane
 #
@@ -64,3 +59,6 @@ buck-out/
 /vendor/bundle/
 **/*/res/values/secrets.xml
 Config.xcconfig
+
+# testing
+/coverage

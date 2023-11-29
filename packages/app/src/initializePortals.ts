@@ -6,7 +6,7 @@ const shopPortal: Portal = {
   name: 'shopwebapp',
   startDir: 'portals/shopwebapp',
   initialContext: { startingRoute: '/help' },
-  androidPlugins: ['com.capacitorjs.plugins.camera.CameraPlugin'],
+  // androidPlugins: ['com.capacitorjs.plugins.camera.CameraPlugin'],
 };
 
 const featuredProductsPortal: Portal = {
