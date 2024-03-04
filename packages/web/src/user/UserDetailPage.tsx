@@ -17,7 +17,6 @@ import {
 } from "@ionic/react";
 import { add } from "ionicons/icons";
 import { Camera, CameraDirection, CameraResultType } from "@capacitor/camera";
-import Portals from "@ionic/portals";
 import { useForm, Controller } from "react-hook-form";
 
 import { useData } from "../shared/useData";
@@ -25,6 +24,7 @@ import { AddressItem, PaymentItem, ImageCropper } from "../shared/components";
 
 import "./UserDetailPage.css";
 import Messages from "../shared/Messages";
+import { publish } from "@ionic/portals";
 
 interface UserDetail {
   firstName: string;
@@ -74,7 +74,7 @@ const UserDetailPage: React.FC = () => {
   const updateUserData = async () => {
     const values = getValues();
     setUserData({ ...user!, ...values });
-    Portals.publish<Messages>({ topic: "user:updated", data: user! });
+    publish<Messages>({ topic: "user:updated", data: user! });
   };
 
   return (
